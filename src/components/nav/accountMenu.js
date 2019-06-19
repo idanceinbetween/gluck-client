@@ -324,7 +324,7 @@ const AccountMenu = props => {
             color='inherit'
             className={classes.link}
           >
-            <MenuItem>All Gifts</MenuItem>
+            <MenuItem id='menuText'>All Gifts</MenuItem>
           </Link>
           <Link
             component={RouterLink}
@@ -332,9 +332,9 @@ const AccountMenu = props => {
             color='inherit'
             className={classes.link}
           >
-            <MenuItem>About</MenuItem>
+            <MenuItem id='menuText'>About</MenuItem>
           </Link>
-          <MenuItem>{' | '}</MenuItem>
+          <MenuItem id='menuCursor'>{' | '}</MenuItem>
           <Link
             component={RouterLink}
             to='/schedule'

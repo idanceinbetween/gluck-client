@@ -1,29 +1,18 @@
-.App {
-  text-align: center;
+#landingTitle {
+  font-size: 100px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#landingTagline {
+  font-size: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+#menuText {
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#menuCursor {
+  cursor: default;
 }
 
 .committedGift {
@@ -39,9 +28,6 @@
   text-decoration: line-through;
 }
 
-#navBar {
-  background-color: #296567;
-}
 #yellowbox {
   border: 1px solid yellow;
 }

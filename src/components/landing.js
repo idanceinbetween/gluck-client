@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const styles = {
   landingContainer: {
-    height: 910,
+    height: 1020,
     backgroundImage: `url(${'https://images.unsplash.com/photo-1512418490979-92798cec1380?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -41,19 +41,9 @@ const Landing = props => {
         <Grid xs={6} id='container2' container className='main-content-area'>
           <Grid container id='pic' alignItems='flex-end' id='text'>
             <Grid item xs={12} id='text' className={classes.title}>
-              <Typography variant='h2' gutterBottom>
-                glūck
-              </Typography>
-              <Typography variant='h4' gutterBottom>
-                gifting made happy
-              </Typography>
-              <Link
-                component={RouterLink}
-                to='/about'
-                // onClick={() => {
-                //   props.setPageTitle(props.location.pathname)
-                // }}
-              >
+              <Typography id='landingTitle'>glūck</Typography>
+              <Typography id='landingTagline'>gifting made happy</Typography>
+              <Link component={RouterLink} to='/about'>
                 <Button variant='contained' color='secondary'>
                   Start
                 </Button>
