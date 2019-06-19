@@ -48,7 +48,8 @@ class App extends Component {
     startEmail: '',
     errorMessage: '',
     mobileOpen: false,
-    pageTitle: 'Home'
+    pageTitle: 'Home',
+    actionTabOpen: 0
   }
 
   componentDidMount() {
@@ -147,6 +148,8 @@ class App extends Component {
     this.setState({ mobileOpen: !this.state.mobileOpen })
   }
 
+  changeTab1 = actionTabOpen => this.setState({ actionTabOpen })
+
   setPageTitle = pathname => {
     switch (pathname) {
       case '/':
@@ -168,7 +171,8 @@ class App extends Component {
       startEmail,
       errorMessage,
       mobileOpen,
-      pageTitle
+      pageTitle,
+      actionTabOpen
     } = this.state
     const {
       handleDrawerToggle,
@@ -176,7 +180,8 @@ class App extends Component {
       checkEmail,
       handleSignIn,
       handleSignUp,
-      setPageTitle
+      setPageTitle,
+      changeTab1
     } = this
     const { classes } = this.props
     return (
@@ -189,6 +194,7 @@ class App extends Component {
             user={user}
             signOut={signOut}
             mobileOpen={mobileOpen}
+            changeTab={value => changeTab1(value)}
             handleDrawerToggle={() => handleDrawerToggle()}
           />
           {this.props.location.pathname === '/' && (
@@ -222,6 +228,8 @@ class App extends Component {
                   setPageTitle={path => console.log(path)}
                   mobileOpen={mobileOpen}
                   handleDrawerToggle={() => handleDrawerToggle()}
+                  tabValue={actionTabOpen}
+                  changeTab={value => changeTab1(value)}
                 />
               </main>
             )}

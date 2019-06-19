@@ -14,7 +14,7 @@ class ActionCanvas extends Component {
     user: this.props.user,
     selectedGiftsIds: [], //For all giftings across recipients, used for draft gifting
     selectedGiftingsIds: [], //For all giftings across recipients, used for draft gifting
-    tabValue: 0,
+    tabValue: this.props.tabValue,
     giftsFilter: 'allActive',
     sortRequester: 'asc',
     myRequestsFilter: 'all',
@@ -174,7 +174,6 @@ class ActionCanvas extends Component {
   handleSortRequester = str => this.setState({ sortRequester: str })
 
   changeTab = (event, newValue) => this.setState({ tabValue: newValue })
-  changeTab1 = tabValue => this.setState({ tabValue })
 
   changeSortByExpiry = str => this.setState({ sortByExpiry: str })
 
@@ -271,7 +270,7 @@ class ActionCanvas extends Component {
       myRequestsFilter,
       scheduleFilter
     } = this.state
-    const { users, user, gifts, setPageTitle } = this.props
+    const { users, user, gifts, setPageTitle, changeTab1 } = this.props
     const {
       draftGifting,
       commitGiftings,
@@ -281,7 +280,7 @@ class ActionCanvas extends Component {
       changeTab,
       handleGiftsFilter,
       handleSortRequester,
-      changeTab1,
+
       mapUniqueRecipientsIds,
       handleMyRequestsFilter,
       handleScheduleFilter
@@ -296,10 +295,10 @@ class ActionCanvas extends Component {
           textColor='primary'
           centered
         >
-          <Tab label='My Gifts' />
+          <Tab label='Exchange Schedule' />
           <Tab label='My Giftings' />
           <Tab label='My Requests' />
-          <Tab label='Exchange Schedule' />
+          <Tab label='My Gifts' />
         </Tabs>
 
         <ActionSubmenu
@@ -314,13 +313,19 @@ class ActionCanvas extends Component {
           handleScheduleFilter={str => handleScheduleFilter(str)}
         />
         {tabValue === 0 && (
-          <GiftsView
-            users={users}
+          <ScheduleContainer
             user={user}
+            users={users}
+            gifts={gifts}
             changeTab={value => changeTab1(value)}
-            selectedGiftsIds={selectedGiftsIds}
-            selectedGiftingsIds={selectedGiftingsIds}
-            giftsFilter={giftsFilter}
+            scheduleFilter={scheduleFilter}
+            setPageTitle={path => setPageTitle(path)}
+            exchangeCompletedWith={recipientId =>
+              exchangeCompletedWith(recipientId)
+            }
+            exchangeCancelledWith={recipientId =>
+              exchangeCancelledWith(recipientId)
+            }
           />
         )}
 
@@ -360,19 +365,13 @@ class ActionCanvas extends Component {
           />
         )}
         {tabValue === 3 && (
-          <ScheduleContainer
-            user={user}
+          <GiftsView
             users={users}
-            gifts={gifts}
+            user={user}
             changeTab={value => changeTab1(value)}
-            scheduleFilter={scheduleFilter}
-            setPageTitle={path => setPageTitle(path)}
-            exchangeCompletedWith={recipientId =>
-              exchangeCompletedWith(recipientId)
-            }
-            exchangeCancelledWith={recipientId =>
-              exchangeCancelledWith(recipientId)
-            }
+            selectedGiftsIds={selectedGiftsIds}
+            selectedGiftingsIds={selectedGiftingsIds}
+            giftsFilter={giftsFilter}
           />
         )}
       </Container>

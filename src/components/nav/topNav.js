@@ -15,53 +15,6 @@ import AccountMenu from './accountMenu'
 
 const drawerWidth = 220
 
-const useStyles2 = makeStyles(theme => ({
-  root: {
-    display: 'flex'
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0
-    }
-  },
-  appBar: {
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`
-    }
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none'
-    }
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block'
-    }
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex'
-    }
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
-  }
-}))
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex'
@@ -118,7 +71,6 @@ const useStyles = makeStyles(theme => ({
 
 const TopNav = props => {
   const classes = useStyles()
-  const classes2 = useStyles2()
   return (
     <div>
       <AppBar
@@ -145,71 +97,13 @@ const TopNav = props => {
           <Typography variant='h6' noWrap>
             {props.pageTitle}
           </Typography>
-
-          <AccountMenu user={props.user} signOut={props.signOut} />
+          <AccountMenu
+            user={props.user}
+            signOut={props.signOut}
+            changeTab={value => props.changeTab(value)}
+          />
         </Toolbar>
       </AppBar>
-      {/* {props.location.pathname === '/' && (
-        <AppBar
-          position='fixed'
-          className={classes.appBar}
-          style={{ width: '100%' }}
-        >
-          <Toolbar>
-            <Typography variant='h6' noWrap>
-              {props.pageTitle}
-            </Typography>
-            <AccountMenu
-              user={props.user}
-              signOut={props.signOut}
-              handlePageTitle={title => props.handlePageTitle(title)}
-            />
-          </Toolbar>
-        </AppBar>
-      )}
-
-      {props.location.pathname === '/about' && (
-        <AppBar
-          position='fixed'
-          className={classes2.appBar}
-          style={{ width: '100%' }}
-        >
-          <Toolbar>
-            <Typography variant='h6' noWrap>
-              {props.pageTitle}
-            </Typography>
-            <AccountMenu
-              user={props.user}
-              signOut={props.signOut}
-              handlePageTitle={title => props.handlePageTitle(title)}
-            />
-          </Toolbar>
-        </AppBar>
-      )}
-
-      {props.location.pathname !== '/' && props.location.pathname !== '/about' && (
-        <AppBar position='fixed' className={classes.appBar} id='navBar'>
-          <Toolbar>
-            <IconButton
-              color='inherit'
-              aria-label='Open drawer'
-              edge='start'
-              onClick={() => props.handleDrawerToggle()}
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant='h6' noWrap>
-              {props.pageTitle}
-            </Typography>
-            <AccountMenu
-              user={props.user}
-              signOut={props.signOut}
-              handlePageTitle={title => props.handlePageTitle(title)}
-            />
-          </Toolbar>
-        </AppBar>
-      )} */}
     </div>
   )
 }

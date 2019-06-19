@@ -64,8 +64,13 @@ const useStyles = makeStyles(theme => ({
 
 const calculateScheduled = user => {
   if (Object.keys(user).length > 0) {
-    return user.giftings.filter(gifting => gifting.exchange_stat_id === 2)
-      .length
+    let giftingsTotal = user.giftings.filter(
+      gifting => gifting.exchange_stat_id === 2
+    )
+    let receivingsTotal = user.receivings.filter(
+      receiving => receiving.exchange_stat_id === 2
+    )
+    return giftingsTotal.concat(receivingsTotal).length
   } else {
     return 0
   }
@@ -339,6 +344,7 @@ const AccountMenu = props => {
             <IconButton
               aria-label='Show number of scheduled exchanges'
               color='inherit'
+              onClick={() => props.changeTab(0)}
             >
               <Badge
                 badgeContent={calculateScheduled(props.user)}
@@ -357,6 +363,7 @@ const AccountMenu = props => {
             <IconButton
               aria-label='Show number of exchanges to take action'
               color='inherit'
+              onClick={() => props.changeTab(1)}
             >
               <Badge
                 badgeContent={calculateActions(props.user)}

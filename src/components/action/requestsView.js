@@ -28,9 +28,10 @@ const mapGiftsInMyReceivings = props => {
           </Grid>
         )
       })
-    } else {
-      return <CircularProgress />
     }
+    // } else {
+    //   return <CircularProgress />
+    // }
   } else {
     return 'You have nothing here! '
   }

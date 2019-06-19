@@ -91,7 +91,7 @@ const MainCanvas = props => {
         />
         <Route
           exact
-          path='/action'
+          path={['/action', '/schedule']}
           component={routerProps => (
             <ActionCanvas
               {...routerProps}
@@ -99,6 +99,8 @@ const MainCanvas = props => {
               users={props.users}
               gifts={props.gifts}
               setPageTitle={path => props.setPageTitle(path)}
+              tabValue={props.tabValue}
+              changeTab={value => props.changeTab(value)}
             />
           )}
         />
@@ -146,7 +148,7 @@ const MainCanvas = props => {
           path='/test'
           component={routerProps => <TestPage {...routerProps} />}
         />
-        <Route
+        {/* <Route
           exact
           path='/schedule'
           component={routerProps => (
@@ -158,7 +160,7 @@ const MainCanvas = props => {
               setPageTitle={path => props.setPageTitle(path)}
             />
           )}
-        />
+        /> */}
         <Route component={() => '404: Page Not Found'} />
       </Switch>
     </div>
