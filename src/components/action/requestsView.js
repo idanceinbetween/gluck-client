@@ -33,12 +33,6 @@ const mapGiftsInMyReceivings = props => {
 }
 
 const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
-  const myRequestedGiftsIds = myRequestedGifts.map(gifting => gifting.gift_id)
-
-  // const myRequestedGifts = allGifts.filter(gift =>
-  //   myRequestedGiftsIds.includes(gift.id)
-  // )
-
   const pendingReceivings = myReceivings.filter(
     gifting => gifting.exchange_stat_id === 1
   )

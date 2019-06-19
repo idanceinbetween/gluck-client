@@ -72,7 +72,7 @@ const ActionSubmenu = props => {
           />
         </Fragment>
       )}
-      {props.tabValue === 2 && (
+      {props.tabValue === 3 && (
         <Fragment>
           Filter:
           <Chip
@@ -95,7 +95,7 @@ const ActionSubmenu = props => {
           />
         </Fragment>
       )}
-      {props.tabValue === 3 && (
+      {props.tabValue === 2 && (
         <Fragment>
           Filter:
           <Chip

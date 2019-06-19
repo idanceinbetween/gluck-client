@@ -76,8 +76,12 @@ const renderCommittedExchanges = props => {
               props.user
             )}
             users={props.users}
+            changeTab={value => props.changeTab(value)}
             exchangeCancelledWith={userId =>
               props.exchangeCancelledWith(userId)
+            }
+            exchangeCompletedWith={userId =>
+              props.exchangeCompletedWith(userId)
             }
             type='recipient'
           />

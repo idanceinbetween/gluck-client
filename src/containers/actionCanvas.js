@@ -1,6 +1,6 @@
-import React, { Fragment, Component } from 'react'
+import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Grid, Container, Tab, Tabs, Chip } from '@material-ui/core'
+import { Container, Tab, Tabs } from '@material-ui/core'
 
 import GiftsView from '../components/action/giftsView'
 import GiftingsView from '../components/action/giftingsView'
@@ -46,19 +46,20 @@ class ActionCanvas extends Component {
             switch (r.exchange_stat_id.toString()) {
               case '1':
                 requestedGiftingsIds.push(r.id)
+                return null
                 break
               case '2':
                 committedGiftingsIds.push(r.id)
-                break
+                return null
               case '3':
                 onholdGiftingsIds.push(r.id)
-                break
+                return null
               case '4':
                 completedGiftingsIds.push(r.id)
-                break
+                return null
               case '5':
                 cancelledGiftingsIds.push(r.id)
-                break
+                return null
             }
           })
       )
@@ -90,7 +91,7 @@ class ActionCanvas extends Component {
     ) //collect ALL of the results, an array per user
 
     if (giftingsToMakeAvailable.flat().length > 0) {
-      giftingsToMakeAvailable.flat().map(gifting => {
+      return giftingsToMakeAvailable.flat().map(gifting => {
         if (gifting.exchange_stat_id === 3) {
           this.changeGiftingState(gifting, 1)
           return null
@@ -129,7 +130,7 @@ class ActionCanvas extends Component {
     } // find other giftings with same gift in order to put on hold
 
     if (giftingsToPutOnHold.flat().length > 0) {
-      giftingsToPutOnHold.flat().map(gifting => {
+      return giftingsToPutOnHold.flat().map(gifting => {
         if (gifting.exchange_stat_id === 1) {
           this.changeGiftingState(gifting, 3)
           return null
@@ -214,6 +215,7 @@ class ActionCanvas extends Component {
     const selectedGiftingsIds = selectedGiftings.map(gifting => gifting.id)
 
     selectedGiftings.map(gifting => {
+      return
       this.changeGiftingState(gifting, 4)
       const otherGiftingsToArchive = this.findOtherGiftingsObjsWithSameGift(
         gifting.gift_id,
@@ -297,8 +299,8 @@ class ActionCanvas extends Component {
         >
           <Tab label='My Gifts' />
           <Tab label='My Giftings' />
-          <Tab label='Exchange Schedule' />
           <Tab label='My Requests' />
+          <Tab label='Exchange Schedule' />
         </Tabs>
 
         <ActionSubmenu
@@ -350,10 +352,20 @@ class ActionCanvas extends Component {
           />
         )}
         {tabValue === 2 && (
+          <RequestsView
+            users={users}
+            user={user}
+            gifts={gifts}
+            myRequestsFilter={myRequestsFilter}
+            handleMyRequestsFilter={str => handleMyRequestsFilter(str)}
+          />
+        )}
+        {tabValue === 3 && (
           <ScheduleContainer
             user={user}
             users={users}
             gifts={gifts}
+            changeTab={value => changeTab1(value)}
             scheduleFilter={scheduleFilter}
             setPageTitle={path => setPageTitle(path)}
             exchangeCompletedWith={recipientId =>
@@ -362,15 +374,6 @@ class ActionCanvas extends Component {
             exchangeCancelledWith={recipientId =>
               exchangeCancelledWith(recipientId)
             }
-          />
-        )}
-        {tabValue === 3 && (
-          <RequestsView
-            users={users}
-            user={user}
-            gifts={gifts}
-            myRequestsFilter={myRequestsFilter}
-            handleMyRequestsFilter={str => handleMyRequestsFilter(str)}
           />
         )}
       </Container>

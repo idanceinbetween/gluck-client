@@ -10,10 +10,8 @@ import {
   Checkbox,
   Button,
   Divider,
-  CircularProgress,
-  Link
+  CircularProgress
 } from '@material-ui/core/'
-import { Link as RouterLink } from 'react-router-dom'
 import DATE from '../../Date'
 
 const useStyles = makeStyles(theme => ({
@@ -107,21 +105,16 @@ const renderSchedule = (props, classes) => {
               >
                 Collected
               </Button>
-              <Link
-                component={RouterLink}
-                to='/action'
-                color='inherit'
-                className={classes.link}
+
+              <Button
+                size='small'
+                color='default'
+                className={classes.button}
+                noWrap
+                onClick={() => props.changeTab(1)}
               >
-                <Button
-                  size='small'
-                  color='default'
-                  className={classes.button}
-                  noWrap
-                >
-                  Manage
-                </Button>
-              </Link>
+                Manage
+              </Button>
             </Fragment>
           )}
           <Button
@@ -146,26 +139,6 @@ const renderSchedule = (props, classes) => {
     </Fragment>
   )
 }
-
-// const findType = (props, classes) => {
-//   switch (props.type) {
-//     case 'recipient':
-//       {
-//         renderRecipientSchedule(props, classes)
-//       }
-//       break
-//     case 'gifter':
-//       {
-//         renderGifterSchedule(props, classes)
-//       }
-//       break
-//     case 'double':
-//       {
-//         renderDoubleSchedule(props, classes)
-//       }
-//       break
-//   }
-// }
 
 const Schedule = props => {
   const classes = useStyles()
