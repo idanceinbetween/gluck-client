@@ -186,11 +186,23 @@ const GiftingsView = props => {
           {findOutstandingRequests.length === 0 && (
             <Button>You have no actions to take, woo hoo!</Button>
           )}
-          {findOutstandingRequests.length > 0 && (
-            <Button variant='contained' onClick={() => props.commitGiftings()}>
-              Confirm all giftings
-            </Button>
-          )}
+        </Grid>
+        <Grid container>
+          <Grid container>
+            <Grid item xs={12} id='centerContentInGrid'>
+              {findOutstandingRequests.length > 0 && (
+                <div>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={() => props.commitGiftings()}
+                  >
+                    Confirm all giftings
+                  </Button>
+                </div>
+              )}
+            </Grid>
+          </Grid>
         </Grid>
       </Fragment>
     )
