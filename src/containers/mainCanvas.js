@@ -96,7 +96,7 @@ const MainCanvas = props => {
               users={props.users}
               gifts={props.gifts}
               tabValue={props.tabValue}
-              changeTab={value => props.changeTab(value)}
+              changeTab1={value => props.changeTab1(value)}
             />
           )}
         />

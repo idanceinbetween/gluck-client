@@ -8,7 +8,7 @@ const SigninSubmenu = () => {
     <Container maxWidth='xs'>
       <List component='nav'>
         <ListItem>
-          <Link component={RouterLink} to='/signin'>
+          <Link component={RouterLink} to='/start'>
             Signin Submenu
           </Link>
         </ListItem>

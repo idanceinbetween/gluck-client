@@ -28,12 +28,21 @@ const mapGiftsInMyReceivings = props => {
           </Grid>
         )
       })
+    } else {
+      return (
+        <Grid container>
+          <Grid container>
+            <Grid item xs={12} id='centerContentInGrid'>
+              <div>
+                <h4>You have no outstanding requests at the moment.</h4>
+              </div>
+            </Grid>
+          </Grid>
+        </Grid>
+      )
     }
-    // } else {
-    //   return <CircularProgress />
-    // }
   } else {
-    return 'You have nothing here! '
+    return <CircularProgress />
   }
 }
 
@@ -79,7 +88,7 @@ const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
   switch (giftsFilter) {
     case 'pending':
       return pendingGifts //find gift objects that are requested,committed or onhold
-    case 'confirmed':
+    case 'committed':
       return confirmedGifts
     case 'onhold':
       return onholdGifts

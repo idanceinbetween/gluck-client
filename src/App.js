@@ -125,7 +125,7 @@ class App extends Component {
     const foundUser = this.state.users.find(u => u.id === user.id)
     if (foundUser) {
       this.setState({ user: foundUser }, () => {
-        if (this.props.history.location.pathname === '/signin') {
+        if (this.props.history.location.pathname === '/start') {
           this.props.history.push('/myaccount')
         }
       })
@@ -144,7 +144,7 @@ class App extends Component {
       pageTitle: 'Home'
     })
     localStorage.removeItem('token')
-    this.props.history.push('/signin')
+    this.props.history.push('/start')
   }
 
   handleDrawerToggle = () => {
@@ -165,7 +165,7 @@ class App extends Component {
         return this.setState({ pageTitle: 'Exchange Schedule' })
       case '/myaccount':
         return this.setState({ pageTitle: 'Account Management' })
-      case '/signin':
+      case '/start':
         return this.setState({ pageTitle: 'Sign In or Sign Up' })
       case '/gifts/add':
         return this.setState({ pageTitle: 'Add A Gift' })
@@ -214,7 +214,7 @@ class App extends Component {
             pageTitle={pageTitle}
             signOut={signOut}
             mobileOpen={mobileOpen}
-            changeTab={value => changeTab1(value)}
+            changeTab1={value => changeTab1(value)}
             handleDrawerToggle={() => handleDrawerToggle()}
           />
           {this.props.location.pathname === '/' && (
@@ -244,7 +244,9 @@ class App extends Component {
                   mobileOpen={mobileOpen}
                   handleDrawerToggle={() => handleDrawerToggle()}
                   tabValue={actionTabOpen}
-                  changeTab={value => changeTab1(value)}
+                  changeTab1={value =>
+                    changeTab1(value)
+                  }
                 />
               </main>
             )}

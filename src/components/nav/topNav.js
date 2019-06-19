@@ -100,7 +100,7 @@ const TopNav = props => {
           <AccountMenu
             user={props.user}
             signOut={props.signOut}
-            changeTab={value => props.changeTab(value)}
+            changeTab1={value => props.changeTab1(value)}
           />
         </Toolbar>
       </AppBar>

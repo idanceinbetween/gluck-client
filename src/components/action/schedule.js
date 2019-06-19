@@ -41,7 +41,7 @@ const renderExchangeStatus = exchange_stat_id => {
       case 1:
         return 'Request pending'
       case 2:
-        return 'Confirmed'
+        return 'Committed'
       case 3:
         return 'On Hold'
       case 4:
@@ -54,7 +54,7 @@ const renderExchangeStatus = exchange_stat_id => {
 
 const renderGiftsNamesForThisUser = props => {
   if (props.exchangesOfThisUser) {
-    props.exchangesOfThisUser.map(exchange => {
+    return props.exchangesOfThisUser.map(exchange => {
       const giftObject = findGiftObjectByExchange(props, exchange)
       if (giftObject) {
         return (
@@ -108,6 +108,12 @@ const renderSchedule = (props, classes) => {
           </Typography>
         )}
 
+        {props.type === 'double' && (
+          <Typography variant='p' component='p' noWrap>
+            <b>is taking and giving:</b>
+          </Typography>
+        )}
+
         <List>{renderGiftsNamesForThisUser(props)}</List>
 
         <Typography component='p' variant='p'>
@@ -139,7 +145,7 @@ const renderSchedule = (props, classes) => {
                 color='default'
                 className={classes.button}
                 noWrap
-                onClick={() => props.changeTab(1)}
+                onClick={() => props.changeTab1(1)}
               >
                 Manage
               </Button>

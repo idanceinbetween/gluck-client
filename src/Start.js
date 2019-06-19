@@ -52,7 +52,7 @@ class START {
     const foundUser = this.state.users.find(u => u.id === user.id)
     if (foundUser) {
       this.setState({ user: foundUser }, () => {
-        if (this.props.history.location.pathname === '/signin') {
+        if (this.props.history.location.pathname === '/start') {
           this.props.history.push('/dashboard')
         }
       })
@@ -70,7 +70,7 @@ class START {
       errorMessage: ''
     })
     localStorage.removeItem('token')
-    this.props.history.push('/signin')
+    this.props.history.push('/start')
   }
 }
 

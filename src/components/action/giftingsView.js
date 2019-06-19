@@ -204,7 +204,7 @@ const GiftingsView = props => {
                 </div>
               ) : (
                 <div>
-                  <Button>You have no actions to take, woo hoo!</Button>
+                  <h4>You have no giftings actions to take.</h4>
                 </div>
               )}
             </Grid>

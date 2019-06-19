@@ -17,7 +17,7 @@ class ActionCanvas extends Component {
     tabValue: this.props.tabValue,
     giftsFilter: 'allActive',
     sortRequester: 'asc',
-    myRequestsFilter: 'all',
+    myRequestsFilter: 'committed',
     scheduleFilter: 'all',
     requestedGiftingsIds: [],
     committedGiftingsIds: [],
@@ -28,7 +28,7 @@ class ActionCanvas extends Component {
 
   componentDidMount() {
     if (!this.props.user) {
-      this.props.history.push('/signin')
+      this.props.history.push('/start')
     }
 
     let recipientsIds = this.mapUniqueRecipientsIds(this.props)
@@ -107,6 +107,7 @@ class ActionCanvas extends Component {
   }
 
   commitGiftings = () => {
+    debugger
     let giftsIdsInCommittedGiftings = []
     let committedGiftingsIds = []
     let giftingsToPutOnHold = []
@@ -296,9 +297,9 @@ class ActionCanvas extends Component {
           centered
         >
           <Tab label='Exchange Schedule' />
-          <Tab label='My Giftings' />
-          <Tab label='My Requests' />
-          <Tab label='My Gifts' />
+          <Tab label="Gifts I'm Giving" />
+          <Tab label='Gifts I Requested' />
+          <Tab label='Gifts I Offer' />
         </Tabs>
 
         <ActionSubmenu
@@ -317,7 +318,7 @@ class ActionCanvas extends Component {
             user={user}
             users={users}
             gifts={gifts}
-            changeTab={value => changeTab1(value)}
+            changeTab1={value => changeTab1(value)}
             scheduleFilter={scheduleFilter}
             exchangeCompletedWith={recipientId =>
               exchangeCompletedWith(recipientId)
@@ -367,7 +368,7 @@ class ActionCanvas extends Component {
           <GiftsView
             users={users}
             user={user}
-            changeTab={value => changeTab1(value)}
+            changeTab1={value => changeTab1(value)}
             selectedGiftsIds={selectedGiftsIds}
             selectedGiftingsIds={selectedGiftingsIds}
             giftsFilter={giftsFilter}

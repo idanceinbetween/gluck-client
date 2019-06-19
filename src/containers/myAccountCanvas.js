@@ -7,7 +7,7 @@ import MyAccountSubmenu from '../components/myAccountSubmenu'
 function MyAccountCanvas(props) {
   useEffect(() => {
     if (!props.user) {
-      props.history.push('/signin')
+      props.history.push('/start')
     }
   })
 

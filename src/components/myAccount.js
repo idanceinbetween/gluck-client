@@ -62,7 +62,7 @@ const mapData = props => {
       </div>
     )
   } else {
-    props.history.push('/signin')
+    props.history.push('/start')
   }
 }
 

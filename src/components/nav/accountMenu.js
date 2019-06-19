@@ -344,7 +344,7 @@ const AccountMenu = props => {
             <IconButton
               aria-label='Show number of scheduled exchanges'
               color='inherit'
-              onClick={() => props.changeTab(0)}
+              onClick={() => props.changeTab1(0)}
             >
               <Badge
                 badgeContent={calculateScheduled(props.user)}
@@ -363,7 +363,7 @@ const AccountMenu = props => {
             <IconButton
               aria-label='Show number of exchanges to take action'
               color='inherit'
-              onClick={() => props.changeTab(1)}
+              onClick={() => props.changeTab1(1)}
             >
               <Badge
                 badgeContent={calculateActions(props.user)}

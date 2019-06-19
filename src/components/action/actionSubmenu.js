@@ -89,9 +89,9 @@ const ActionSubmenu = props => {
           />
           <Chip
             label='Ready for Pickup'
-            onClick={() => props.handleMyRequestsFilter('confirmed')}
+            onClick={() => props.handleMyRequestsFilter('committed')}
             className={classes.chip}
-            color={props.myRequestsFilter === 'confirmed' ? 'secondary' : ''}
+            color={props.myRequestsFilter === 'committed' ? 'secondary' : ''}
           />
         </Fragment>
       )}

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 const calculateRequestsOfThisGift = (user, gift) =>
   user.giftings.filter(g => g.gift_id === gift.id).length
 
-const GiftCard = ({ changeTab, user, gift, history }) => {
+const GiftCard = ({ changeTab1, user, gift, history }) => {
   const classes = useStyles()
   return (
     <Fragment>
@@ -59,7 +59,7 @@ const GiftCard = ({ changeTab, user, gift, history }) => {
             Edit/Delete
           </Button>
           {calculateRequestsOfThisGift(user, gift) > 0 && (
-            <Button size='small' color='primary' onClick={() => changeTab(1)}>
+            <Button size='small' color='primary' onClick={() => changeTab1(1)}>
               Manage Gifting
             </Button>
           )}

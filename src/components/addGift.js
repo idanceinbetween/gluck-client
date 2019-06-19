@@ -35,7 +35,7 @@ class AddListing extends Component {
 
   componentDidMount() {
     if (!this.props.user) {
-      this.props.history.push('/signin')
+      this.props.history.push('/start')
     }
   }
 

@@ -51,7 +51,7 @@ const renderCommittedExchanges = props => {
               props.user
             )}
             users={props.users}
-            changeTab={value => props.changeTab(value)}
+            changeTab1={value => props.changeTab1(value)}
             exchangeCancelledWith={userId =>
               props.exchangeCancelledWith(userId)
             }
@@ -94,6 +94,7 @@ const renderCommittedExchanges = props => {
       return (
         <Grid item md={3} zeroMinWidth>
           <Schedule
+            changeTab1={value => props.changeTab1(value)}
             key={user.id}
             user={user}
             exchangesOfThisUser={exchangesOfThisUser(
