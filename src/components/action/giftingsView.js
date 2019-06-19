@@ -178,10 +178,11 @@ const GiftingsView = props => {
     return (
       <Fragment>
         <Grid container spacing={2}>
-          <Typography variant='h6'>
-            You only have two actions: Commit gift, or explicitly cancel
-            request. Other's will be automatically taken care of.
-          </Typography>
+          {/* <Typography variant='h6'>
+            First time here? Hint: You only have two actions: Commit gift, or
+            explicitly cancel a gift request. Others will be automatically taken
+            care of!
+          </Typography> */}
           {renderResults(props)}
           {findOutstandingRequests.length === 0 && (
             <Button>You have no actions to take, woo hoo!</Button>

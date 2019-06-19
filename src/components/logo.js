@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Logo = () => {
   return (
     <div>
-      <img src={require('../img/logo_vibe.jpg')} alt="gluck's logo" />
+      {/* <img src={require('../img/logo_vibe.jpg')} alt="gluck's logo" /> */}
     </div>
   )
 }

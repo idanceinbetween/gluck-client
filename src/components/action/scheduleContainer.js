@@ -13,6 +13,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+const calculateCompletedGiftings = user =>
+  user.giftings.filter(gifting => gifting.exchange_stat_id === 4).length
+const calculateCompletedReceivings = user =>
+  user.receivings.filter(receiving => receiving.exchange_stat_id === 4).length
+
 const renderCommittedExchanges = props => {
   const sortedExchanges = sortExchangesAccordingly(props)
   const users = findUniqueUsersObjectsFromExchanges(
@@ -179,11 +184,20 @@ const ScheduleContainer = props => {
           {/* {renderCommittedGiftings(props)} */}
 
           <Grid item md={3}>
-            <Paper className={classes.paperRoot}>
-              <Typography>
-                You're doing great! And I'm just testing a really long text to
-                check that everything is ok.
-              </Typography>
+            <Paper className={classes.paperRoot} elevation='10'>
+              <div align='center'>
+                <img
+                  src={require('../../img/achievement.png')}
+                  alt='achievement icon'
+                  width='50%'
+                />
+                <Typography gutterBottom>
+                  You have gifted{' '}
+                  <h3>{calculateCompletedGiftings(props.user)}</h3> items, and
+                  received <h3>{calculateCompletedReceivings(props.user)}</h3>{' '}
+                  gifts to date!
+                </Typography>
+              </div>
             </Paper>
           </Grid>
         </Grid>

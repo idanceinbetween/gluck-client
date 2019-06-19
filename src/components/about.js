@@ -70,7 +70,7 @@ const About = props => {
         <Grid container direction='row'>
           <Grid item xs />
           <Grid item xs={6} id='bluebox' alignItems='center' id='buttonCenter'>
-            <Link component={RouterLink} to='/myaccount'>
+            <Link component={RouterLink} to='/action'>
               <Button variant='contained' color='secondary'>
                 Start
               </Button>
