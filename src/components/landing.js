@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { withRouter, NavLink as RouterLink } from 'react-router-dom'
 import { Button, Typography, Grid, Link } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import { useSpring, animated } from 'react-spring'
 
 const styles = {
   landingContainer: {
