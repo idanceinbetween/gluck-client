@@ -99,6 +99,7 @@ class App extends Component {
         alert(`please try again: ${data.error}`)
       } else {
         localStorage.setItem('token', data.token)
+        window.location.reload()
         this.signIn(data.user, localStorage.getItem('token'))
       }
     })
@@ -126,7 +127,7 @@ class App extends Component {
     if (foundUser) {
       this.setState({ user: foundUser }, () => {
         if (this.props.history.location.pathname === '/start') {
-          this.props.history.push('/myaccount')
+          this.props.history.push('/action')
         }
       })
     } else {
@@ -144,7 +145,7 @@ class App extends Component {
       pageTitle: 'Home'
     })
     localStorage.removeItem('token')
-    this.props.history.push('/start')
+    this.props.history.push('/')
   }
 
   handleDrawerToggle = () => {
@@ -182,6 +183,14 @@ class App extends Component {
     this.setPageTitle(currPathname)
   }
 
+  changeFormToShow = str => {
+    this.setState({ formToShow: str })
+  }
+
+  changeErrorMessage = str => {
+    this.setState({ errorMessage: str })
+  }
+
   render() {
     const {
       users,
@@ -201,7 +210,9 @@ class App extends Component {
       checkEmail,
       handleSignIn,
       handleSignUp,
-      changeTab1
+      changeTab1,
+      changeFormToShow,
+      changeErrorMessage
     } = this
     const { classes } = this.props
     return (
@@ -236,7 +247,9 @@ class App extends Component {
                   gifts={gifts}
                   today={today}
                   formToShow={formToShow}
+                  changeFormToShow={str => changeFormToShow(str)}
                   errorMessage={errorMessage}
+                  changeErrorMessage={str => changeErrorMessage(str)}
                   startEmail={startEmail}
                   checkEmail={email => checkEmail(email)}
                   signIn={credentials => handleSignIn(credentials)}
@@ -244,9 +257,7 @@ class App extends Component {
                   mobileOpen={mobileOpen}
                   handleDrawerToggle={() => handleDrawerToggle()}
                   tabValue={actionTabOpen}
-                  changeTab1={value =>
-                    changeTab1(value)
-                  }
+                  changeTab1={value => changeTab1(value)}
                 />
               </main>
             )}

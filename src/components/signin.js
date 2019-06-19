@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { TextField, Button, CircularProgress } from '@material-ui/core/'
+import { TextField, Grid, Button, CircularProgress } from '@material-ui/core/'
 import { usePickerState } from '@material-ui/pickers'
 
 class Signin extends Component {
@@ -23,9 +23,9 @@ class Signin extends Component {
   renderStartPage = ({ checkEmail, errorMessage }) => {
     return (
       <Fragment>
-        <h1>Let's get started</h1>
-        <p>Enter your email address to get started. </p>
-        <p>{errorMessage}</p>
+        <h1 align='center'>Let's get started!</h1>
+        <p>What is your email address?</p>
+        <p style={{ color: 'red' }}>{errorMessage}</p>
         <form
           onSubmit={event => {
             event.preventDefault()
@@ -42,7 +42,7 @@ class Signin extends Component {
           />
           <br />
 
-          <Button variant='contained' type='submit'>
+          <Button variant='contained' type='submit' color='secondary'>
             Get Started
           </Button>
         </form>
@@ -82,8 +82,15 @@ class Signin extends Component {
             margin='normal'
           />
           <br />
-          <Button variant='contained' type='submit'>
+          <Button variant='contained' type='submit' color='secondary'>
             Login
+          </Button>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={() => this.props.changeFormToShow('')}
+          >
+            Go back
           </Button>
         </form>
       </Fragment>
@@ -99,8 +106,8 @@ class Signin extends Component {
           onSubmit={event => {
             event.preventDefault()
             if (users.find(user => user.username === this.state.username)) {
-              alert(
-                'username already exists, please choose a different username!'
+              this.props.changeErrorMessage(
+                'username already exists, please choose a different username'
               )
             } else {
               signUp({
@@ -129,7 +136,8 @@ class Signin extends Component {
             onChange={this.handleChange}
             margin='normal'
           />
-          <p>Pick a username, you can change this later.</p>
+          <p>Pick a username (you can't change this later)</p>
+          <p style={{ color: 'red' }}>{this.props.errorMessage}</p>
           <TextField
             id='username'
             type='username'
@@ -140,7 +148,7 @@ class Signin extends Component {
             margin='normal'
           />
           <br />
-          <Button variant='contained' type='submit'>
+          <Button variant='contained' type='submit' color='secondary'>
             Sign Up
           </Button>
         </form>

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import {
   Link,
@@ -421,13 +422,21 @@ const AccountMenu = props => {
           >
             <MenuItem>About</MenuItem>
           </Link>
-          <Link
+          {/* <Link
             component={RouterLink}
             to='/start'
             color='inherit'
             className={classes.link}
+          > */}
+          <Button
+            size='small'
+            color='secondary'
+            variant='outlined'
+            onClick={() => props.history.push('/start')}
           >
-            <IconButton
+            Start
+          </Button>
+          {/* <IconButton
               edge='end'
               aria-label='Sign up or Sign in'
               aria-controls={menuId}
@@ -435,8 +444,8 @@ const AccountMenu = props => {
               color='inherit'
             >
               <PowerSettingsNew />
-            </IconButton>
-          </Link>
+            </IconButton> */}
+          {/* </Link> */}
         </div>
         <div className={classes.sectionMobile}>
           <Link
@@ -467,4 +476,4 @@ const AccountMenu = props => {
   }
 }
 
-export default AccountMenu
+export default withRouter(AccountMenu)

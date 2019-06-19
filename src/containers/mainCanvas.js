@@ -122,7 +122,9 @@ const MainCanvas = props => {
               formToShow={props.formToShow}
               startEmail={props.startEmail}
               errorMessage={props.errorMessage}
+              changeErrorMessage={str => props.changeErrorMessage(str)}
               checkEmail={email => props.checkEmail(email)}
+              changeFormToShow={str => props.changeFormToShow(str)}
               signIn={credentials => props.signIn(credentials)}
               signUp={credentials => props.signUp(credentials)}
             />
