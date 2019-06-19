@@ -270,7 +270,7 @@ class ActionCanvas extends Component {
       myRequestsFilter,
       scheduleFilter
     } = this.state
-    const { users, user, gifts, setPageTitle, changeTab1 } = this.props
+    const { users, user, gifts, changeTab1 } = this.props
     const {
       draftGifting,
       commitGiftings,
@@ -319,7 +319,6 @@ class ActionCanvas extends Component {
             gifts={gifts}
             changeTab={value => changeTab1(value)}
             scheduleFilter={scheduleFilter}
-            setPageTitle={path => setPageTitle(path)}
             exchangeCompletedWith={recipientId =>
               exchangeCompletedWith(recipientId)
             }

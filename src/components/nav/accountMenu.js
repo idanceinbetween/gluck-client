@@ -423,7 +423,7 @@ const AccountMenu = props => {
           </Link>
           <Link
             component={RouterLink}
-            to='/signin'
+            to='/start'
             color='inherit'
             className={classes.link}
           >
@@ -441,7 +441,7 @@ const AccountMenu = props => {
         <div className={classes.sectionMobile}>
           <Link
             component={RouterLink}
-            to='/signin'
+            to='/start'
             color='inherit'
             className={classes.link}
           >

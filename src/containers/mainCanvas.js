@@ -72,7 +72,6 @@ const MainCanvas = props => {
               users={props.users}
               gifts={props.gifts}
               today={props.today}
-              setPageTitle={path => props.setPageTitle(path)}
             />
           )}
         />
@@ -84,7 +83,6 @@ const MainCanvas = props => {
               {...routerProps}
               user={props.user}
               users={props.users}
-              setPageTitle={path => props.setPageTitle(path)}
             />
           )}
         />
@@ -97,7 +95,6 @@ const MainCanvas = props => {
               user={props.user}
               users={props.users}
               gifts={props.gifts}
-              setPageTitle={path => props.setPageTitle(path)}
               tabValue={props.tabValue}
               changeTab={value => props.changeTab(value)}
             />
@@ -106,28 +103,18 @@ const MainCanvas = props => {
         <Route
           exact
           path='/gifts/add'
-          component={routerProps => (
-            <AddGiftCanvas
-              user={props.user}
-              setPageTitle={path => props.setPageTitle(path)}
-              pageTitle={props.pageTitle}
-            />
-          )}
+          component={routerProps => <AddGiftCanvas user={props.user} />}
         />
         <Route
           exact
           path='/gifts/:id'
           component={routerProps => (
-            <SingleGiftCanvas
-              {...routerProps}
-              user={props.user}
-              setPageTitle={path => props.setPageTitle(path)}
-            />
+            <SingleGiftCanvas {...routerProps} user={props.user} />
           )}
         />
         <Route
           exact
-          path='/signin'
+          path='/start'
           component={routerProps => (
             <SigninCanvas
               {...routerProps}
@@ -138,7 +125,6 @@ const MainCanvas = props => {
               checkEmail={email => props.checkEmail(email)}
               signIn={credentials => props.signIn(credentials)}
               signUp={credentials => props.signUp(credentials)}
-              setPageTitle={path => props.setPageTitle(path)}
             />
           )}
         />

@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Landing = props => {
-  useEffect(() => props.setPageTitle(props.location.pathname))
   const classes = useStyles()
   return (
     <Grid

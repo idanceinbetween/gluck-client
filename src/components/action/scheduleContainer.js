@@ -180,7 +180,6 @@ const ScheduleContainer = props => {
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
-          {renderCommittedExchanges(props)}
           {/* {renderCommittedGiftings(props)} */}
 
           <Grid item md={3}>
@@ -200,6 +199,7 @@ const ScheduleContainer = props => {
               </div>
             </Paper>
           </Grid>
+          {renderCommittedExchanges(props)}
         </Grid>
       </div>
     )

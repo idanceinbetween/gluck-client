@@ -69,6 +69,9 @@ class App extends Component {
     API.fetchGifts().then(gifts => {
       this.setState({ gifts })
     })
+
+    const currPathname = this.props.location.pathname
+    this.setPageTitle(currPathname)
   }
 
   checkEmail = email => {
@@ -156,9 +159,27 @@ class App extends Component {
         return this.setState({ pageTitle: 'Home' })
       case '/about':
         return this.setState({ pageTitle: 'About' })
+      case '/action':
+        return this.setState({ pageTitle: 'Action Panel' })
+      case '/schedule':
+        return this.setState({ pageTitle: 'Exchange Schedule' })
+      case '/myaccount':
+        return this.setState({ pageTitle: 'Account Management' })
+      case '/signin':
+        return this.setState({ pageTitle: 'Sign In or Sign Up' })
+      case '/gifts/add':
+        return this.setState({ pageTitle: 'Add A Gift' })
       default:
         return this.setState({ pageTitle: 'glūck' })
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevPathname = prevProps.location.pathname
+    const currPathname = this.props.location.pathname
+
+    if (prevPathname === currPathname) return
+    this.setPageTitle(currPathname)
   }
 
   render() {
@@ -171,8 +192,8 @@ class App extends Component {
       startEmail,
       errorMessage,
       mobileOpen,
-      pageTitle,
-      actionTabOpen
+      actionTabOpen,
+      pageTitle
     } = this.state
     const {
       handleDrawerToggle,
@@ -180,7 +201,6 @@ class App extends Component {
       checkEmail,
       handleSignIn,
       handleSignUp,
-      setPageTitle,
       changeTab1
     } = this
     const { classes } = this.props
@@ -190,8 +210,8 @@ class App extends Component {
           <CssBaseline />
           <TopNav
             theme={theme}
-            pageTitle={pageTitle}
             user={user}
+            pageTitle={pageTitle}
             signOut={signOut}
             mobileOpen={mobileOpen}
             changeTab={value => changeTab1(value)}
@@ -201,13 +221,11 @@ class App extends Component {
             <main className={classes.content}>
               <div className={classes.toolbar} />
               <div className={classes.root}>
-                <Landing setPageTitle={path => setPageTitle(path)} />
+                <Landing />
               </div>
             </main>
           )}
-          {this.props.location.pathname === '/about' && (
-            <About setPageTitle={path => setPageTitle(path)} />
-          )}
+          {this.props.location.pathname === '/about' && <About />}
           {this.props.location.pathname !== '/' &&
             this.props.location.pathname !== '/about' && (
               <main className={classes.content}>
@@ -220,12 +238,9 @@ class App extends Component {
                   formToShow={formToShow}
                   errorMessage={errorMessage}
                   startEmail={startEmail}
-                  pageTitle={pageTitle}
                   checkEmail={email => checkEmail(email)}
                   signIn={credentials => handleSignIn(credentials)}
                   signUp={credentials => handleSignUp(credentials)}
-                  // setPageTitle={path => setPageTitle(path)}
-                  setPageTitle={path => console.log(path)}
                   mobileOpen={mobileOpen}
                   handleDrawerToggle={() => handleDrawerToggle()}
                   tabValue={actionTabOpen}

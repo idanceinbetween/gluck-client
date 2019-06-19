@@ -37,14 +37,6 @@ class AddListing extends Component {
     if (!this.props.user) {
       this.props.history.push('/signin')
     }
-    this.props.setPageTitle(this.props.location.pathname)
-  }
-
-  shouldComponentUpdate(prevProps, prevState) {
-    debugger
-    if (prevProps.pageTitle === this.props.pageTitle) {
-      return false
-    }
   }
 
   submitForm = event => {

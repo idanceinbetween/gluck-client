@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const About = props => {
-  useEffect(() => props.setPageTitle(props.location.pathname))
   const classes = useStyles()
   return (
     <Grid

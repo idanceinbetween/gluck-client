@@ -10,10 +10,7 @@ const AddGiftCanvas = props => {
   return (
     <Fragment>
       <Grid item xs={9}>
-        <AddGift
-          user={props.user}
-          setPageTitle={path => props.setPageTitle(path)}
-        />
+        <AddGift user={props.user} />
       </Grid>
       <Grid item xs>
         <AddGiftSubmenu />
