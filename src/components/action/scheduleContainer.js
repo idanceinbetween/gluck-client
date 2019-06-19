@@ -1,8 +1,8 @@
 import React from 'react'
-import Schedule from '../components/action/schedule'
+import Schedule from './schedule'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Paper, Typography, CircularProgress } from '@material-ui/core'
-import DATE from '../Date'
+import DATE from '../../Date'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1

@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Container, Tab, Tabs } from '@material-ui/core'
 
-import GiftsView from '../components/action/giftsView'
-import GiftingsView from '../components/action/giftingsView'
-import RequestsView from '../components/action/requestsView'
+import GiftsView from './giftsView'
+import GiftingsView from './giftingsView'
+import RequestsView from './requestsView'
 import ScheduleContainer from './scheduleContainer'
-import ActionSubmenu from '../components/action/actionSubmenu'
-import API from '../API'
+import ActionSubmenu from './actionSubmenu'
+import API from '../../API'
 
 class ActionCanvas extends Component {
   state = {
