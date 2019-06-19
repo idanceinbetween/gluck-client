@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-
+import { withRouter } from 'react-router-dom'
 import {
   Card,
   CardActionArea,
@@ -23,12 +23,12 @@ const useStyles = makeStyles({
 const calculateRequestsOfThisGift = (user, gift) =>
   user.giftings.filter(g => g.gift_id === gift.id).length
 
-const GiftCard = ({ changeTab, user, gift }) => {
+const GiftCard = ({ changeTab, user, gift, history }) => {
   const classes = useStyles()
   return (
     <Fragment>
       <Card className={classes.card}>
-        <CardActionArea>
+        <CardActionArea onClick={() => history.push(`/gifts/${gift.id}`)}>
           <CardMedia
             className={classes.media}
             title={gift.title}
@@ -69,4 +69,4 @@ const GiftCard = ({ changeTab, user, gift }) => {
   )
 }
 
-export default GiftCard
+export default withRouter(GiftCard)
