@@ -99,6 +99,7 @@ class App extends Component {
         alert(`please try again: ${data.error}`)
       } else {
         localStorage.setItem('token', data.token)
+        window.location.reload()
         this.signIn(data.user, localStorage.getItem('token'))
       }
     })

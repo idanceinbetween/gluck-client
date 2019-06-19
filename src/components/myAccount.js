@@ -1,64 +1,143 @@
 import React, { Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Grid, Tooltip, Typography, IconButton } from '@material-ui/core'
 
 import CommsCard from './commsCard'
 import LocationCard from './locationCard'
 import UserTemplateCard from './user_templateCard'
+import Info from '@material-ui/icons/Info'
 
 const mapData = props => {
   if (Object.keys(props.user).length > 0) {
     let user = props.user
     return (
       <div>
-        <h1>{user.username}'s Account</h1>
-        <h2>Actions Summary</h2>
-        {user.giftings.length > 0 && (
-          <p>Giftings: {user.giftings.length} exchanges to take action!</p>
-        )}
-        {user.receivings.length > 0 && (
-          <p>Receivings: {user.receivings.length} exchanges to take action!</p>
-        )}
-        {user.gifts.length > 0 && (
-          <p>
-            <b>{user.gifts.length}</b> Gifts
-          </p>
-        )}
-        {/* {checkNoAction(user) && 'You have no actions to take!'} */}
-        <h2>Account Management</h2>
-        <h3>Your Username: {user.username}</h3>
-        <h3>Your Email: {user.email}</h3>
-        <p>Communications</p>
-        {user.communications.length > 0 ? (
-          user.communications.map(communication => (
-            <CommsCard
-              key={communication.id}
-              communication={communication}
-              pref_comm_id={user.pref_comm_id}
-            />
-          ))
-        ) : (
-          <div>You have no communications. Add one?</div>
-        )}
-        <p>Locations</p>
-        {user.locations.length > 0 ? (
-          user.locations.map(location => (
-            <LocationCard key={location.id} location={location} />
-          ))
-        ) : (
-          <div>You have no locations. Add one?</div>
-        )}
-        <p>User Templates</p>
-        {user.user_templates.length > 0 ? (
-          user.user_templates.map(user_template => (
-            <UserTemplateCard
-              key={user_template.id}
-              user_template={user_template}
-              locations={user.locations}
-            />
-          ))
-        ) : (
-          <div>You have no user templates. Add one?</div>
-        )}
+        <Grid container name='main'>
+          <Grid item xs={12} name='firstRow'>
+            <h3>Your Username: {user.username}</h3>
+            <h3>Your Email: {user.email}</h3>
+          </Grid>
+          <Grid item xs={6} name='secondRowfirstCol'>
+            <Typography variant='h6'>
+              Communications
+              <Tooltip
+                title="These are the different types of communications you'd like to
+              share with other users. You can choose a preferred mode of
+              communication."
+                placement='right-start'
+              >
+                <IconButton
+                  aria-label='Show more'
+                  aria-haspopup='true'
+                  color='inherit'
+                >
+                  <Info />
+                </IconButton>
+              </Tooltip>
+            </Typography>
+
+            <Grid container name='secondRowFirstColinner'>
+              {user.communications.length > 0 ? (
+                user.communications.map(communication => (
+                  <Fragment>
+                    <Grid item name='firstcard'>
+                      <CommsCard
+                        key={communication.id}
+                        communication={communication}
+                        pref_comm_id={user.pref_comm_id}
+                      />
+                    </Grid>
+                    <Grid item xs={1} name='blank' />
+                  </Fragment>
+                ))
+              ) : (
+                <Grid item name='firstcard'>
+                  <div>You have no communications method stored.</div>
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
+          <Grid item xs={6} name='secondRowSecondcol'>
+            <Typography variant='h6'>
+              Locations
+              <Tooltip
+                title="These are the locations that you'd like to save on file to be used
+              repeatedly."
+                placement='right-start'
+              >
+                <IconButton
+                  aria-label='Show more'
+                  aria-haspopup='true'
+                  color='inherit'
+                >
+                  <Info />
+                </IconButton>
+              </Tooltip>
+            </Typography>
+
+            <Grid container name='secondRowSecondColinner'>
+              {user.locations.length > 0 ? (
+                user.locations.map(location => (
+                  <Fragment>
+                    <Grid item name='firstcard'>
+                      <LocationCard key={location.id} location={location} />
+                    </Grid>
+                    <Grid item xs={1} name='blank' />
+                  </Fragment>
+                ))
+              ) : (
+                <Grid item name='firstcard'>
+                  <div>You have no locations stored.</div>
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
+          <Grid item xs={6} name='secondRowfirstCol'>
+            <Typography variant='h6'>
+              User Templates (coming soon!)
+              <Tooltip
+                title="These are the templates of messages that you'd like to use in your
+              communications with other users."
+                placement='right-start'
+              >
+                <IconButton
+                  aria-label='Show more'
+                  aria-haspopup='true'
+                  color='inherit'
+                >
+                  <Info />
+                </IconButton>
+              </Tooltip>
+            </Typography>
+
+            <Grid container name='secondRowFirstColinner'>
+              {user.user_templates.length > 0 ? (
+                user.user_templates.map(user_template => (
+                  <Fragment>
+                    <Grid item name='firstcard'>
+                      <UserTemplateCard
+                        key={user_template.id}
+                        user_template={user_template}
+                        locations={user.locations}
+                      />
+                    </Grid>
+                    <Grid item xs={1} name='blank' />
+                  </Fragment>
+                ))
+              ) : (
+                <Grid item name='secondcard'>
+                  <div>You have no user templates stored.</div>
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
+          <Grid item xs={6} name='secondRowSecondcol'>
+            <Grid container name='secondRowSecondColinner'>
+              <Grid item name='firstcard' />
+              <Grid item name='secondcard' />
+            </Grid>
+          </Grid>
+        </Grid>
       </div>
     )
   } else {
@@ -67,7 +146,6 @@ const mapData = props => {
 }
 
 const MyAccount = props => {
-  // const classes = useStyles()
   return <Fragment>{props.users.length > 0 && mapData(props)}</Fragment>
 }
 

@@ -11,7 +11,7 @@ import {
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 500
+    maxWidth: 250
   }
 })
 
@@ -25,7 +25,7 @@ const UserTemplateCard = ({ user_template, locations }) => {
       <Card className={classes.card}>
         <CardActionArea>
           <CardContent>
-            <Typography variant='body2' fontWeight='fontWeightMedium'>
+            <Typography fontWeight='fontWeightMedium'>
               {user_template.label}
             </Typography>
             <Typography variant='body2' color='textPrimary'>
