@@ -35,33 +35,55 @@ const findGiftObjectByExchange = (props, exchange) => {
   }
 }
 
-const renderGiftsNamesForThisUser = props =>
-  props.exchangesOfThisUser.map(exchange => {
-    const giftObject = findGiftObjectByExchange(props, exchange)
-    if (giftObject) {
-      return (
-        <ListItem key={giftObject.id} dense button>
-          <ListItemIcon>
-            <Checkbox
-              edge='start'
-              disabled
-              checked
-              disableRipple
-              inputProps={{
-                'aria-labelledby': giftObject.id
-              }}
-            />
-          </ListItemIcon>
-          <ListItemText
-            id={giftObject.id}
-            primary={`${giftObject.title} (status: Committed)`}
-          />
-        </ListItem>
-      )
-    } else {
-      return <CircularProgress />
+const renderExchangeStatus = exchange_stat_id => {
+  if (exchange_stat_id) {
+    switch (exchange_stat_id) {
+      case 1:
+        return 'Request pending'
+      case 2:
+        return 'Confirmed'
+      case 3:
+        return 'On Hold'
+      case 4:
+        return 'Completed'
+      case 5:
+        return 'Cancelled'
     }
-  })
+  }
+}
+
+const renderGiftsNamesForThisUser = props => {
+  if (props.exchangesOfThisUser) {
+    props.exchangesOfThisUser.map(exchange => {
+      const giftObject = findGiftObjectByExchange(props, exchange)
+      if (giftObject) {
+        return (
+          <ListItem key={giftObject.id} dense button>
+            <ListItemIcon>
+              <Checkbox
+                edge='start'
+                disabled
+                checked
+                disableRipple
+                inputProps={{
+                  'aria-labelledby': giftObject.id
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText
+              id={giftObject.id}
+              primary={`${giftObject.title} (status: ${renderExchangeStatus(
+                exchange.exchange_stat_id
+              )})`}
+            />
+          </ListItem>
+        )
+      } else {
+        return <CircularProgress />
+      }
+    })
+  }
+}
 
 const renderSchedule = (props, classes) => {
   return (

@@ -163,18 +163,22 @@ const findGiftPairsRequested = (user, id) => {
 }
 
 const findOutstandingRequests = user => {
-  let giftingsExchangeStatIds = user.giftings.map(
-    gifting => gifting.exchange_stat_id
-  )
-  return (
-    giftingsExchangeStatIds.includes(1) ||
-    giftingsExchangeStatIds.includes(2) ||
-    giftingsExchangeStatIds.includes(3)
-  )
+  if (user) {
+    let giftingsExchangeStatIds = user.giftings.map(
+      gifting => gifting.exchange_stat_id
+    )
+
+    return (
+      giftingsExchangeStatIds.includes(1) ||
+      giftingsExchangeStatIds.includes(2) ||
+      giftingsExchangeStatIds.includes(3)
+    )
+  }
 }
 
 const GiftingsView = props => {
   if (props.user) {
+    const result = findOutstandingRequests(props.user)
     return (
       <Fragment>
         <Grid container spacing={2}>
@@ -184,14 +188,11 @@ const GiftingsView = props => {
             care of!
           </Typography> */}
           {renderResults(props)}
-          {findOutstandingRequests.length === 0 && (
-            <Button>You have no actions to take, woo hoo!</Button>
-          )}
         </Grid>
         <Grid container>
           <Grid container>
             <Grid item xs={12} id='centerContentInGrid'>
-              {findOutstandingRequests.length > 0 && (
+              {result ? (
                 <div>
                   <Button
                     variant='contained'
@@ -200,6 +201,10 @@ const GiftingsView = props => {
                   >
                     Confirm all giftings
                   </Button>
+                </div>
+              ) : (
+                <div>
+                  <Button>You have no actions to take, woo hoo!</Button>
                 </div>
               )}
             </Grid>
@@ -212,4 +217,4 @@ const GiftingsView = props => {
   }
 }
 
-export default React.memo(GiftingsView)
+export default GiftingsView
