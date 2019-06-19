@@ -17,32 +17,25 @@ const ActionSubmenu = props => {
         <Fragment>
           Filter:
           <Chip
-            label='View All Active'
-            onClick={() => props.handleGiftsFilter('allActive')}
+            label='View All Exchanges'
+            onClick={() => props.handleScheduleFilter('all')}
             className={classes.chip}
-            color={props.giftsFilter === 'allActive' ? 'secondary' : ''}
+            color={props.scheduleFilter === 'all' ? 'secondary' : ''}
           />
           <Chip
-            label='With requests'
-            onClick={() => props.handleGiftsFilter('requested')}
+            label='Giftings'
+            onClick={() => props.handleScheduleFilter('giftings')}
             className={classes.chip}
-            color={props.giftsFilter === 'requested' ? 'secondary' : ''}
+            color={props.scheduleFilter === 'giftings' ? 'secondary' : ''}
           />
           <Chip
-            label='Without requests'
-            onClick={() => props.handleGiftsFilter('lonely')}
+            label='Receivings'
+            onClick={() => props.handleScheduleFilter('receivings')}
             className={classes.chip}
-            color={props.giftsFilter === 'lonely' ? 'secondary' : ''}
+            color={props.scheduleFilter === 'receivings' ? 'secondary' : ''}
           />
-          {/* <Chip
-            label='Archived'
-            onClick={() => props.handleGiftsFilter('gifted')}
-            className={classes.chip}
-            color={props.giftsFilter === 'gifted' ? '#080808' : '#282828'}
-          /> */}
         </Fragment>
       )}
-
       {props.tabValue === 1 && (
         <Fragment>
           Sort by:
@@ -72,29 +65,7 @@ const ActionSubmenu = props => {
           />
         </Fragment>
       )}
-      {props.tabValue === 3 && (
-        <Fragment>
-          Filter:
-          <Chip
-            label='View All Exchanges'
-            onClick={() => props.handleScheduleFilter('all')}
-            className={classes.chip}
-            color={props.scheduleFilter === 'all' ? 'secondary' : ''}
-          />
-          <Chip
-            label='Giftings'
-            onClick={() => props.handleScheduleFilter('giftings')}
-            className={classes.chip}
-            color={props.scheduleFilter === 'giftings' ? 'secondary' : ''}
-          />
-          <Chip
-            label='Receivings'
-            onClick={() => props.handleScheduleFilter('receivings')}
-            className={classes.chip}
-            color={props.scheduleFilter === 'receivings' ? 'secondary' : ''}
-          />
-        </Fragment>
-      )}
+
       {props.tabValue === 2 && (
         <Fragment>
           Filter:
@@ -122,6 +93,35 @@ const ActionSubmenu = props => {
             className={classes.chip}
             color={props.myRequestsFilter === 'confirmed' ? 'secondary' : ''}
           />
+        </Fragment>
+      )}
+      {props.tabValue === 3 && (
+        <Fragment>
+          Filter:
+          <Chip
+            label='View All Active'
+            onClick={() => props.handleGiftsFilter('allActive')}
+            className={classes.chip}
+            color={props.giftsFilter === 'allActive' ? 'secondary' : ''}
+          />
+          <Chip
+            label='With requests'
+            onClick={() => props.handleGiftsFilter('requested')}
+            className={classes.chip}
+            color={props.giftsFilter === 'requested' ? 'secondary' : ''}
+          />
+          <Chip
+            label='Without requests'
+            onClick={() => props.handleGiftsFilter('lonely')}
+            className={classes.chip}
+            color={props.giftsFilter === 'lonely' ? 'secondary' : ''}
+          />
+          {/* <Chip
+            label='Archived'
+            onClick={() => props.handleGiftsFilter('gifted')}
+            className={classes.chip}
+            color={props.giftsFilter === 'gifted' ? '#080808' : '#282828'}
+          /> */}
         </Fragment>
       )}
     </Container>
