@@ -2,7 +2,7 @@ import 'date-fns'
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import API from '../API'
+import API from '../../API'
 import {
   Grid,
   Typography,

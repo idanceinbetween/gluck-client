@@ -27,7 +27,7 @@
   color: grey;
   text-decoration: line-through;
 }
-.MuiGrid-grid-xs-6#buttonCenter {
+#buttonCenter {
   flex-basis: 0 !important;
 }
 
@@ -45,4 +45,9 @@
 }
 #orangebox {
   border: 1px solid orange;
+}
+
+#centerContentInGrid > div {
+  display: grid;
+  justify-content: center;
 }

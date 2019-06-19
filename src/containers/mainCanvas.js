@@ -7,7 +7,7 @@ import SigninCanvas from './signinCanvas'
 import MyAccountCanvas from './myAccountCanvas'
 import ActionCanvas from '../components/action/actionCanvas'
 import AddGiftCanvas from './addGiftCanvas'
-import SingleGiftCanvas from './singleGiftCanvas'
+import SingleGiftCanvas from '../components/singleGift/singleGiftCanvas'
 import TestPage from '../test'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'

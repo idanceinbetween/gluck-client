@@ -12,7 +12,7 @@ const SingleGiftSubmenu = ({ gift, giftOwner, user }) => {
           <div>
             <p>This is your item! Go to Action Panel to manage this gift.</p>
             <Link to='/action' component={RouterLink}>
-              <Button variant='contained' color='secondary'>
+              <Button variant='contained' color='secondary' id='buttonCenter'>
                 Manage Gifting
               </Button>
             </Link>
