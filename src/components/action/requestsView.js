@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import GiftIRequestedCard from './giftIRequestedCard'
-import ActionUserPaper from './actionUserPaper'
 import { Grid, CircularProgress } from '@material-ui/core'
 
 const mapGiftsInMyReceivings = props => {
@@ -21,7 +20,6 @@ const mapGiftsInMyReceivings = props => {
       props.gifts
     )
 
-    debugger
     return finalGiftsToMap.map(gift => {
       return (
         <Grid item key={gift.id}>
@@ -29,6 +27,8 @@ const mapGiftsInMyReceivings = props => {
         </Grid>
       )
     })
+  } else {
+    return <CircularProgress />
   }
 }
 
@@ -44,7 +44,7 @@ const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
   )
   const pendingReceivingsIds = pendingReceivings.map(gifting => gifting.id)
   const pendingGifts = allGifts.filter(gift =>
-    pendingReceivings.includes(gift.id)
+    pendingReceivingsIds.includes(gift.id)
   )
 
   const confirmedReceivings = myReceivings.filter(
@@ -52,7 +52,7 @@ const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
   )
   const confirmedReceivingsIds = confirmedReceivings.map(gifting => gifting.id)
   const confirmedGifts = allGifts.filter(gift =>
-    confirmedReceivings.includes(gift.id)
+    confirmedReceivingsIds.includes(gift.id)
   )
 
   const onholdReceivings = myReceivings.filter(
@@ -60,7 +60,7 @@ const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
   )
   const onholdReceivingsIds = onholdReceivings.map(gifting => gifting.id)
   const onholdGifts = allGifts.filter(gift =>
-    onholdReceivings.includes(gift.id)
+    onholdReceivingsIds.includes(gift.id)
   )
 
   const unsuccessfulReceivings = myReceivings.filter(
@@ -70,7 +70,7 @@ const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
     gifting => gifting.id
   )
   const unsuccessfulGifts = allGifts.filter(gift =>
-    unsuccessfulReceivings.includes(gift.id)
+    unsuccessfulReceivingsIds.includes(gift.id)
   )
 
   const activeGifts = pendingGifts
@@ -81,7 +81,6 @@ const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
     case 'pending':
       return pendingGifts //find gift objects that are requested,committed or onhold
     case 'confirmed':
-      debugger
       return confirmedGifts
     case 'onhold':
       return onholdGifts
@@ -104,4 +103,4 @@ const RequestsView = props => {
   }
 }
 
-export default React.memo(RequestsView)
+export default RequestsView

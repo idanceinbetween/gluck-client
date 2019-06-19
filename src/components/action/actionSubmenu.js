@@ -72,6 +72,29 @@ const ActionSubmenu = props => {
           />
         </Fragment>
       )}
+      {props.tabValue === 2 && (
+        <Fragment>
+          Filter:
+          <Chip
+            label='View All Exchanges'
+            onClick={() => props.handleScheduleFilter('all')}
+            className={classes.chip}
+            color={props.scheduleFilter === 'all' ? 'secondary' : ''}
+          />
+          <Chip
+            label='Giftings'
+            onClick={() => props.handleScheduleFilter('giftings')}
+            className={classes.chip}
+            color={props.scheduleFilter === 'giftings' ? 'secondary' : ''}
+          />
+          <Chip
+            label='Receivings'
+            onClick={() => props.handleScheduleFilter('receivings')}
+            className={classes.chip}
+            color={props.scheduleFilter === 'receivings' ? 'secondary' : ''}
+          />
+        </Fragment>
+      )}
       {props.tabValue === 3 && (
         <Fragment>
           Filter:
@@ -82,10 +105,16 @@ const ActionSubmenu = props => {
             color={props.myRequestsFilter === 'all' ? 'secondary' : ''}
           />
           <Chip
-            label='Request Pending'
+            label='Pending'
             onClick={() => props.handleMyRequestsFilter('pending')}
             className={classes.chip}
             color={props.myRequestsFilter === 'pending' ? 'secondary' : ''}
+          />
+          <Chip
+            label='On Hold'
+            onClick={() => props.handleMyRequestsFilter('onhold')}
+            className={classes.chip}
+            color={props.myRequestsFilter === 'onhold' ? 'secondary' : ''}
           />
           <Chip
             label='Ready for Pickup'

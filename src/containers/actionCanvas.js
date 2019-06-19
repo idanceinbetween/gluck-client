@@ -14,10 +14,11 @@ class ActionCanvas extends Component {
     user: this.props.user,
     selectedGiftsIds: [], //For all giftings across recipients, used for draft gifting
     selectedGiftingsIds: [], //For all giftings across recipients, used for draft gifting
-    tabValue: 0,
+    tabValue: 2,
     giftsFilter: 'allActive',
     sortRequester: 'asc',
-    myRequestsFilter: 'archived',
+    myRequestsFilter: 'all',
+    scheduleFilter: 'all',
     requestedGiftingsIds: [],
     committedGiftingsIds: [],
     onholdGiftingsIds: [],
@@ -167,6 +168,8 @@ class ActionCanvas extends Component {
 
   handleMyRequestsFilter = str => this.setState({ myRequestsFilter: str })
 
+  handleScheduleFilter = str => this.setState({ scheduleFilter: str })
+
   handleSortRequester = str => this.setState({ sortRequester: str })
 
   changeTab = (event, newValue) => this.setState({ tabValue: newValue })
@@ -264,7 +267,8 @@ class ActionCanvas extends Component {
       onholdGiftingsIds,
       completedGiftingsIds,
       cancelledGiftingsIds,
-      myRequestsFilter
+      myRequestsFilter,
+      scheduleFilter
     } = this.state
     const { users, user, gifts, setPageTitle } = this.props
     const {
@@ -278,7 +282,8 @@ class ActionCanvas extends Component {
       handleSortRequester,
       changeTab1,
       mapUniqueRecipientsIds,
-      handleMyRequestsFilter
+      handleMyRequestsFilter,
+      handleScheduleFilter
     } = this
 
     return (
@@ -301,9 +306,11 @@ class ActionCanvas extends Component {
           giftsFilter={giftsFilter}
           sortRequester={sortRequester}
           myRequestsFilter={myRequestsFilter}
+          scheduleFilter={scheduleFilter}
           handleGiftsFilter={str => handleGiftsFilter(str)}
           handleSortRequester={str => handleSortRequester(str)}
           handleMyRequestsFilter={str => handleMyRequestsFilter(str)}
+          handleScheduleFilter={str => handleScheduleFilter(str)}
         />
         {tabValue === 0 && (
           <GiftsView
@@ -347,6 +354,7 @@ class ActionCanvas extends Component {
             user={user}
             users={users}
             gifts={gifts}
+            scheduleFilter={scheduleFilter}
             setPageTitle={path => setPageTitle(path)}
             exchangeCompletedWith={recipientId =>
               exchangeCompletedWith(recipientId)

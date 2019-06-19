@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Paper,
@@ -27,19 +27,19 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const findGiftObjectByGifting = (props, gifting) => {
+const findGiftObjectByExchange = (props, exchange) => {
   if (props.users) {
-    const gifter = props.users.find(user => user.id === gifting.gifter_id)
+    const gifter = props.users.find(user => user.id === exchange.gifter_id)
 
     if (gifter) {
-      return gifter.gifts.find(gift => gift.id === gifting.gift_id)
+      return gifter.gifts.find(gift => gift.id === exchange.gift_id)
     }
   }
 }
 
-const renderGiftsNamesForThisRecipient = props =>
-  props.giftingsOfThisRecipient.map(gifting => {
-    const giftObject = findGiftObjectByGifting(props, gifting)
+const renderGiftsNamesForThisUser = props =>
+  props.exchangesOfThisUser.map(exchange => {
+    const giftObject = findGiftObjectByExchange(props, exchange)
     if (giftObject) {
       return (
         <ListItem key={giftObject.id} dense button>
@@ -65,74 +65,114 @@ const renderGiftsNamesForThisRecipient = props =>
     }
   })
 
+const renderSchedule = (props, classes) => {
+  return (
+    <Fragment>
+      <Paper className={classes.root}>
+        <Typography component='h6' variant='h6'>
+          {DATE.convert(props.exchangesOfThisUser[0].date)}
+        </Typography>
+        <Typography variant='subtitle1' noWrap>
+          {props.user.username}
+        </Typography>
+
+        {props.type === 'recipient' && (
+          <Typography variant='p' component='p' noWrap>
+            <b>is receiving the following from you:</b>
+          </Typography>
+        )}
+
+        {props.type === 'gifter' && (
+          <Typography variant='p' component='p' noWrap>
+            <b>is gifting the following to you:</b>
+          </Typography>
+        )}
+
+        <List>{renderGiftsNamesForThisUser(props)}</List>
+
+        <Typography component='p' variant='p'>
+          Contact: {props.user.email}
+        </Typography>
+        <br />
+        <Divider />
+        <Typography align='center'>
+          {props.type === 'recipient' && (
+            <Fragment>
+              <Button
+                size='small'
+                color='secondary'
+                className={classes.button}
+                noWrap
+                onClick={() => props.exchangeCompletedWith(props.user.id)}
+              >
+                Collected
+              </Button>
+              <Link
+                component={RouterLink}
+                to='/action'
+                color='inherit'
+                className={classes.link}
+              >
+                <Button
+                  size='small'
+                  color='default'
+                  className={classes.button}
+                  noWrap
+                >
+                  Manage
+                </Button>
+              </Link>
+            </Fragment>
+          )}
+          <Button
+            size='small'
+            color='default'
+            className={classes.button}
+            noWrap
+            onClick={() => {
+              {
+                window.confirm(
+                  `Are you sure you want to cancel all the exchange with ${
+                    props.user.username
+                  }?`
+                ) && props.exchangeCancelledWith(props.user.id)
+              }
+            }}
+          >
+            Cancel
+          </Button>
+        </Typography>
+      </Paper>
+    </Fragment>
+  )
+}
+
+// const findType = (props, classes) => {
+//   switch (props.type) {
+//     case 'recipient':
+//       {
+//         renderRecipientSchedule(props, classes)
+//       }
+//       break
+//     case 'gifter':
+//       {
+//         renderGifterSchedule(props, classes)
+//       }
+//       break
+//     case 'double':
+//       {
+//         renderDoubleSchedule(props, classes)
+//       }
+//       break
+//   }
+// }
+
 const Schedule = props => {
   const classes = useStyles()
   return (
     <div>
-      {props.recipient && props.giftingsOfThisRecipient.length > 0 ? (
-        <Paper className={classes.root}>
-          <Typography component='h6' variant='h6'>
-            {DATE.convert(props.giftingsOfThisRecipient[0].date)}
-          </Typography>
-          <Typography variant='subtitle1' noWrap>
-            {props.recipient.username}
-          </Typography>
-
-          <Typography variant='p' component='p' noWrap>
-            <b>Receiving:</b>
-          </Typography>
-
-          <List>{renderGiftsNamesForThisRecipient(props)}</List>
-
-          <Typography component='p' variant='p'>
-            Contact: {props.recipient.email}
-          </Typography>
-          <br />
-          <Divider />
-          <Typography align='center'>
-            <Button
-              size='small'
-              color='secondary'
-              className={classes.button}
-              noWrap
-              onClick={() => props.exchangeCompletedWith(props.recipient.id)}
-            >
-              Collected
-            </Button>
-            <Link
-              component={RouterLink}
-              to='/action'
-              color='inherit'
-              className={classes.link}
-            >
-              <Button
-                size='small'
-                color='default'
-                className={classes.button}
-                noWrap
-              >
-                Manage
-              </Button>
-            </Link>
-            <Button
-              size='small'
-              color='default'
-              className={classes.button}
-              noWrap
-              onClick={() => {
-                {
-                  window.confirm(
-                    `Are you sure you want to cancel all the exchange with ${
-                      props.recipient.username
-                    }?`
-                  ) && props.exchangeCancelledWith(props.recipient.id)
-                }
-              }}
-            >
-              Cancel
-            </Button>
-          </Typography>
-        </Paper>
+      {props.user && props.exchangesOfThisUser.length > 0 ? (
+        renderSchedule(props, classes)
       ) : (
         <CircularProgress />
       )}
