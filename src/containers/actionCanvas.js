@@ -14,7 +14,7 @@ class ActionCanvas extends Component {
     user: this.props.user,
     selectedGiftsIds: [], //For all giftings across recipients, used for draft gifting
     selectedGiftingsIds: [], //For all giftings across recipients, used for draft gifting
-    tabValue: 2,
+    tabValue: 0,
     giftsFilter: 'allActive',
     sortRequester: 'asc',
     myRequestsFilter: 'all',
@@ -215,7 +215,6 @@ class ActionCanvas extends Component {
     const selectedGiftingsIds = selectedGiftings.map(gifting => gifting.id)
 
     selectedGiftings.map(gifting => {
-      return
       this.changeGiftingState(gifting, 4)
       const otherGiftingsToArchive = this.findOtherGiftingsObjsWithSameGift(
         gifting.gift_id,

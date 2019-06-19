@@ -124,30 +124,6 @@ const ActionSubmenu = props => {
           />
         </Fragment>
       )}
-      {/* <div>
-        View By: <br />
-        Gifts
-        <Switch color='default' onChange={() => props.changeView()} />
-        Requesters
-      </div>
-      {!props.viewByRequesters && (
-        <Fragment>
-          <br />
-          <Divider />
-          <br />
-        </Fragment>
-      )}
-      {props.selectedGiftingsIds.length > 0 ? (
-        <Fragment>
-          <GiftingsContainer
-            selectedGiftingsIds={props.selectedGiftingsIds}
-            gifter={props.user}
-            users={props.users}
-            commitGiftings={giftings => props.commitGiftings(giftings)}
-            removeGiftings={giftings => props.removeGiftings(giftings)}
-          />
-        </Fragment>
-      ) : null} */}
     </Container>
   )
 }

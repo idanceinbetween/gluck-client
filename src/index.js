@@ -1,15 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import 'typeface-roboto'
 import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import * as serviceWorker from './serviceWorker'
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#296567'
+    },
+    secondary: {
+      main: '#ffcc00',
+      contrastText: '#000000'
+    }
+  }
+})
+
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <MuiThemeProvider theme={theme}>
+    <Router>
+      <App />
+    </Router>
+  </MuiThemeProvider>,
   document.getElementById('root')
 )
 

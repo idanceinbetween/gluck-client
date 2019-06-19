@@ -14,20 +14,24 @@ const mapGiftsAccordingly = props => {
       props.giftsFilter
     )
 
-    return finalGiftsObjsToMap.map(gift => {
-      return (
-        <Grid item key={gift.id}>
-          <GiftCard
-            key={gift.id}
-            gift={gift}
-            user={props.user}
-            changeTab={value => props.changeTab(value)}
-          />
-        </Grid>
-      )
-    })
+    if (finalGiftsObjsToMap.length > 0) {
+      return finalGiftsObjsToMap.map(gift => {
+        return (
+          <Grid item key={gift.id}>
+            <GiftCard
+              key={gift.id}
+              gift={gift}
+              user={props.user}
+              changeTab={value => props.changeTab(value)}
+            />
+          </Grid>
+        )
+      })
+    } else {
+      return <CircularProgress />
+    }
   } else {
-    return <CircularProgress />
+    return 'You have nothing here!'
   }
 }
 

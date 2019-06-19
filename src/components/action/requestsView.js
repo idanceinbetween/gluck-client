@@ -20,15 +20,19 @@ const mapGiftsInMyReceivings = props => {
       props.gifts
     )
 
-    return finalGiftsToMap.map(gift => {
-      return (
-        <Grid item key={gift.id}>
-          <GiftIRequestedCard key={gift.id} gift={gift} users={props.users} />
-        </Grid>
-      )
-    })
+    if (finalGiftsToMap.length > 0) {
+      return finalGiftsToMap.map(gift => {
+        return (
+          <Grid item key={gift.id}>
+            <GiftIRequestedCard key={gift.id} gift={gift} users={props.users} />
+          </Grid>
+        )
+      })
+    } else {
+      return <CircularProgress />
+    }
   } else {
-    return <CircularProgress />
+    return 'You have nothing here! '
   }
 }
 

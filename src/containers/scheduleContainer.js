@@ -13,36 +13,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// const renderCommittedGiftings = props => {
-//   const giftingsInQuestion = findCommittedGiftings(props.user)
-//   const recipients = findUniqueRecipientsObjectsFromGiftings(
-//     giftingsInQuestion,
-//     props.users
-//   )
-
-//   return recipients.map(recipient => {
-//     return (
-//       <Grid item md={3} zeroMinWidth>
-//         <Schedule
-//           key={recipient.id}
-//           recipient={recipient}
-//           giftingsOfThisRecipient={giftingsOfThisRecipient(
-//             recipient,
-//             giftingsInQuestion
-//           )}
-//           users={props.users}
-//           exchangeCompletedWith={recipientId =>
-//             props.exchangeCompletedWith(recipientId)
-//           }
-//           exchangeCancelledWith={recipientId =>
-//             props.exchangeCancelledWith(recipientId)
-//           }
-//         />
-//       </Grid>
-//     )
-//   })
-// }
-
 const renderCommittedExchanges = props => {
   const sortedExchanges = sortExchangesAccordingly(props)
   const users = findUniqueUsersObjectsFromExchanges(
@@ -174,18 +144,6 @@ const exchangesOfThisUser = (user, str, exchanges, myself) => {
       break
   }
 }
-
-// const giftingsOfThisRecipient = (recipient, giftingsOfThisGifter) => {
-//   return giftingsOfThisGifter.filter(
-//     gifting => gifting.recipient_id === recipient.id
-//   )
-// }
-// const findUniqueRecipientsObjectsFromGiftings = (giftings, users) => {
-//   const r = []
-//   giftings.map(g => r.push(users.find(u => u.id === g.recipient_id)))
-//   const recipients = [...new Set(r)] // unique recipients
-//   return recipients
-// }
 
 const applyFilters = props => {
   const myReceivings = props.user.receivings

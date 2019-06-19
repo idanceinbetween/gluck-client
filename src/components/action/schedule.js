@@ -98,10 +98,16 @@ const renderSchedule = (props, classes) => {
             <Fragment>
               <Button
                 size='small'
-                color='secondary'
+                color='primary'
                 className={classes.button}
                 noWrap
-                onClick={() => props.exchangeCompletedWith(props.user.id)}
+                onClick={() => {
+                  window.confirm(
+                    `Please confirm that this exchange has been completed with ${
+                      props.user.username
+                    }.`
+                  ) && props.exchangeCompletedWith(props.user.id)
+                }}
               >
                 Collected
               </Button>
