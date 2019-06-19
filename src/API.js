@@ -62,6 +62,14 @@ class API {
     return fetch(this.giftsUrl + `/${id}`).then(resp => resp.json())
   }
 
+  static createExchange(exchange) {
+    return fetch(this.exchangesUrl, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(exchange)
+    }).then(resp => resp.json())
+  }
+
   static updateExchangeStat(exchange) {
     return fetch(this.exchangesUrl + `/${exchange.id}`, {
       method: 'PATCH',

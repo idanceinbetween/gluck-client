@@ -39,9 +39,6 @@ const styles = {
     maxWidth: '100%',
     maxHeight: '100%'
   }
-  // button: {
-  //   margin: 'auto'
-  // }
 }
 
 class SingleGiftCanvas extends Component {
@@ -75,10 +72,21 @@ class SingleGiftCanvas extends Component {
 
   handleEditSubmit = () => console.log('editing!')
 
+  createExchange = exchangeObj => {
+    API.createExchange(exchangeObj).then(data => {
+      if (data.error) {
+        alert(`Request error: ${data.error}. Please try again later.`)
+      } else {
+        alert('Gift successfully requested!')
+        window.location.reload()
+      }
+    })
+  }
+
   render() {
     const { gift, giftOwner, editMode } = this.state
     const { user, classes } = this.props
-    const { handleEditMode, handleEditSubmit } = this
+    const { handleEditMode, handleEditSubmit, createExchange } = this
     return (
       <Fragment>
         <Grid container>
@@ -108,6 +116,9 @@ class SingleGiftCanvas extends Component {
                   handleEditMode={handleEditMode}
                   giftOwner={giftOwner}
                   user={user}
+                  handleCreateExchange={exchangeObj =>
+                    createExchange(exchangeObj)
+                  }
                 />
               )}
               {gift && editMode && (

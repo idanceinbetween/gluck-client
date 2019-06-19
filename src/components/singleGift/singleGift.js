@@ -69,13 +69,24 @@ const renderOwnerButtons = props => {
 }
 
 const findThisGiftInMyReceivings = props => {
-  if (props.user) {
+  if (props.user.receivings) {
     if (props.user.receivings.find(r => r.gift_id === props.gift.id)) {
       return true
     } else {
       return false
     }
   }
+}
+
+const createExchangeObj = props => {
+  const exchangeObj = {
+    date: new Date().toISOString(),
+    exchange_stat_id: 1,
+    gift_id: props.gift.id,
+    gifter_id: props.giftOwner.id,
+    recipient_id: props.user.id
+  }
+  return exchangeObj
 }
 
 const renderNonOwnerButtons = (props, classes) => {
@@ -142,7 +153,9 @@ const renderNonOwnerButtons = (props, classes) => {
                 noWrap
                 className={classes.button}
                 id='buttonCenter'
-                // onClick={() => props.handleEditMode()}
+                onClick={() =>
+                  props.handleCreateExchange(createExchangeObj(props))
+                }
               >
                 Request
               </Button>
