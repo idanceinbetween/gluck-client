@@ -151,6 +151,13 @@ class Signin extends Component {
           <Button variant='contained' type='submit' color='secondary'>
             Sign Up
           </Button>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={() => this.props.changeFormToShow('')}
+          >
+            Go back
+          </Button>
         </form>
       </Fragment>
     )
