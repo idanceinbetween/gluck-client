@@ -94,7 +94,7 @@ const TopNav = props => {
               <Home />
             </IconButton>
           </Link>
-          <Typography variant='h6' noWrap>
+          <Typography variant='h6' noWrap id='menuText'>
             {props.pageTitle}
           </Typography>
           <AccountMenu

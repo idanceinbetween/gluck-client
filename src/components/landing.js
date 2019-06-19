@@ -45,7 +45,7 @@ const Landing = props => {
               <Typography id='landingTagline'>gifting made happy</Typography>
               <Link component={RouterLink} to='/about'>
                 <Button variant='contained' color='secondary'>
-                  Start
+                  Find Out More
                 </Button>
               </Link>
             </Grid>

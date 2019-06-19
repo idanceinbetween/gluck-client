@@ -8,7 +8,7 @@
 
 #menuText {
   font-size: 1.2rem;
-  padding: 10px;
+  padding: 10px, 10px, 10px;
 }
 
 #menuCursor {
@@ -27,6 +27,9 @@
   color: grey;
   text-decoration: line-through;
 }
+.MuiGrid-grid-xs-6#buttonCenter {
+  flex-basis: 0 !important;
+}
 
 #yellowbox {
   border: 1px solid yellow;
@@ -42,5 +45,4 @@
 }
 #orangebox {
   border: 1px solid orange;
-  margin: 0 auto;
 }
