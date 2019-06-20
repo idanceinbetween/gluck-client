@@ -6,7 +6,7 @@ import GiftListCanvas from './giftListCanvas'
 import SigninCanvas from './signinCanvas'
 import MyAccountCanvas from './myAccountCanvas'
 import ActionCanvas from '../components/action/actionCanvas'
-import AddGiftCanvas from './addGiftCanvas'
+import AddGiftCanvas from '../components/singleGift/addGiftCanvas'
 import SingleGiftCanvas from '../components/singleGift/singleGiftCanvas'
 import TestPage from '../test'
 

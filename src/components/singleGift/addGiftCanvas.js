@@ -3,8 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 import { Grid, Button } from '@material-ui/core'
 
-import AddGift from '../components/addGift'
-import AddGiftSubmenu from '../components/addGiftSubmenu'
+import AddGift from './addGift'
 
 const AddGiftCanvas = props => {
   return (

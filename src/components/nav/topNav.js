@@ -6,7 +6,8 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Link
+  Link,
+  Button
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Home from '@material-ui/icons/Home'
@@ -16,56 +17,15 @@ import AccountMenu from './accountMenu'
 const drawerWidth = 220
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex'
-  },
-  menuButtonMain: {
-    marginRight: theme.spacing(2)
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0
-    }
-  },
   appBar: {
     marginLeft: drawerWidth,
+    maxHeight: '64px',
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`
     }
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none'
-    }
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none'
-    }
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block'
-    }
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex'
-    }
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
+  button: {
+    marginRight: '60px'
   }
 }))
 
@@ -79,21 +39,19 @@ const TopNav = props => {
         style={{ width: '100%' }}
       >
         <Toolbar>
-          <Link
-            component={RouterLink}
-            to='/'
+          <Button
+            size='large'
             color='inherit'
-            className={classes.link}
+            className={classes.button}
+            onClick={() => props.history.push('/')}
           >
-            <IconButton
-              edge='start'
-              className={classes.menuButtonMain}
-              color='inherit'
-              aria-label='Open drawer'
-            >
-              <Home />
-            </IconButton>
-          </Link>
+            <img
+              src={require('../../img/logo.png')}
+              alt="gluck's logo"
+              height='30px'
+            />
+            glūck
+          </Button>
           <Typography variant='h6' noWrap id='menuText'>
             {props.pageTitle}
           </Typography>

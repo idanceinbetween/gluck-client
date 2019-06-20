@@ -4,14 +4,8 @@ import { withRouter } from 'react-router-dom'
 
 import {
   Link,
-  List,
-  ListItem,
-  // Link,
   Button,
-  AppBar,
   IconButton,
-  Toolbar,
-  Typography,
   Badge,
   MenuItem,
   Menu,
@@ -26,8 +20,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import CardGiftcard from '@material-ui/icons/CardGiftcard'
 import Info from '@material-ui/icons/Info'
-
-// import InputIcon from '@material-ui/icons/Input'
+import List from '@material-ui/icons/List'
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew'
 
 const useStyles = makeStyles(theme => ({
@@ -184,7 +177,7 @@ const AccountMenu = props => {
             aria-haspopup='true'
             color='inherit'
           >
-            <CardGiftcard />
+            <List />
           </IconButton>
           <p>All Gifts</p>
         </MenuItem>
@@ -335,8 +328,7 @@ const AccountMenu = props => {
           >
             <MenuItem id='menuText'>About</MenuItem>
           </Link>
-          <MenuItem id='menuCursor'>{' | '}</MenuItem>
-          <Link
+          {/* <Link
             component={RouterLink}
             to='/schedule'
             color='inherit'
@@ -354,6 +346,24 @@ const AccountMenu = props => {
                 <SwapHorizontalCircleIcon />
               </Badge>
             </IconButton>
+          </Link> */}
+          {/* <Link
+            component={RouterLink}
+            to='/gifts/add'
+            color='inherit'
+            className={classes.link}
+          >
+            <IconButton aria-label='Add a post' color='inherit'>
+              <AddCircleIcon />
+            </IconButton>
+          </Link> */}
+          <Link
+            component={RouterLink}
+            to='/gifts/add'
+            color='inherit'
+            className={classes.link}
+          >
+            <MenuItem id='menuText'> Add A Gift</MenuItem>
           </Link>
           <Link
             component={RouterLink}
@@ -370,18 +380,8 @@ const AccountMenu = props => {
                 badgeContent={calculateActions(props.user)}
                 color='secondary'
               >
-                <AssignmentIcon />
+                <CardGiftcard />
               </Badge>
-            </IconButton>
-          </Link>
-          <Link
-            component={RouterLink}
-            to='/gifts/add'
-            color='inherit'
-            className={classes.link}
-          >
-            <IconButton aria-label='Add a post' color='inherit'>
-              <AddCircleIcon />
             </IconButton>
           </Link>
           <IconButton
@@ -470,9 +470,9 @@ const AccountMenu = props => {
   }
 
   if (Object.keys(props.user).length > 0) {
-    return <Fragment>{renderUserMenu(props)}</Fragment>
+    return <Fragment>{renderUserMenu(props)}</Fragment> //includes desktop and mobile versions
   } else {
-    return <Fragment>{renderSigninMenu(props)}</Fragment>
+    return <Fragment>{renderSigninMenu(props)}</Fragment> //includes desktop and mobile versions
   }
 }
 

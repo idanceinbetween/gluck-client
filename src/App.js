@@ -143,21 +143,19 @@ class App extends Component {
   setPageTitle = pathname => {
     switch (pathname) {
       case '/':
-        return this.setState({ pageTitle: 'glūck  -  Home' })
+        return this.setState({ pageTitle: '' })
       case '/about':
-        return this.setState({ pageTitle: 'glūck  -  About' })
+        return this.setState({ pageTitle: 'About' })
       case '/action':
-        return this.setState({ pageTitle: 'glūck  -  Action Panel' })
+        return this.setState({ pageTitle: 'Action Panel' })
       case '/schedule':
-        return this.setState({ pageTitle: 'glūck  -  Exchange Schedule' })
+        return this.setState({ pageTitle: 'Exchange Schedule' })
       case '/myaccount':
-        return this.setState({ pageTitle: 'glūck  -  Account Management' })
+        return this.setState({ pageTitle: 'Account Management' })
       case '/start':
-        return this.setState({ pageTitle: 'glūck  -  Sign In or Sign Up' })
+        return this.setState({ pageTitle: 'Sign In or Sign Up' })
       case '/gifts/add':
-        return this.setState({ pageTitle: 'glūck  -  Add A Gift' })
-      case '/gifts':
-        return this.setState({ pageTitle: 'glūck  -  All Gifts' })
+        return this.setState({ pageTitle: 'Add A Gift' })
       default:
         return this.setState({ pageTitle: 'glūck' })
     }
