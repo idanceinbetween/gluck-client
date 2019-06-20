@@ -6,7 +6,7 @@ import MyAccount from '../components/myAccount'
 
 const styles = {
   myAccountContainer: {
-    height: 1080,
+    height: 1300,
     backgroundImage: `url(${'https://images.pexels.com/photos/64782/pexels-photo-64782.jpeg'})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -42,7 +42,7 @@ function MyAccountCanvas(props) {
       >
         <Grid container direction='row' justify='center' alignItems='flex-end'>
           <Grid item xs />
-          <Grid item xs={9}>
+          <Grid item xs={7}>
             <Paper className={classes.root}>
               <MyAccount user={props.user} users={props.users} />
             </Paper>
