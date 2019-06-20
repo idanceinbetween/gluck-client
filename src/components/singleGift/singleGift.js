@@ -191,7 +191,7 @@ const SingleGift = props => {
                 {props.gift.title}
               </Typography>
               <Typography variant='subtitle2' gutterBottom>
-                <b>DESCRIPTION:</b>
+                <b>Description:</b>
                 <br /> {props.gift.description}
               </Typography>
               <br />

@@ -26,7 +26,7 @@ const mapGiftsByExpiry = props => {
   let gifts = [...props.gifts].filter(gift => {
     return (
       gift.title.toLowerCase().includes(props.searchTerm.toLowerCase()) &&
-      new Date(gift.expiry) > props.today
+      new Date(gift.expiry) >= props.today
     )
   })
 

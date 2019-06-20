@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { Grid, Button, Paper } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core'
 
 import AddGift from '../components/addGift'
 import AddGiftSubmenu from '../components/addGiftSubmenu'
@@ -9,7 +9,12 @@ import AddGiftSubmenu from '../components/addGiftSubmenu'
 const AddGiftCanvas = props => {
   return (
     <Fragment>
-      <Grid container>
+      <Grid
+        container
+        direction='row'
+        justify='flex-start'
+        alignItems='flex-start'
+      >
         <Grid item xs>
           <Grid
             container
@@ -17,22 +22,11 @@ const AddGiftCanvas = props => {
             justify='flex-start'
             alignItems='flex-start'
           >
-            <Grid item>
-              <Button
-                color='primary'
-                onClick={() => this.props.history.push('/gifts')}
-              >
-                {' '}
-                « Back to Listings
-              </Button>
-            </Grid>
+            <Grid item />
           </Grid>
         </Grid>
-        <Grid item xs={5}>
-          <Paper>
-            {/* <Paper className={classes.paper}> */}
-            <AddGift user={props.user} />
-          </Paper>
+        <Grid item xs={6}>
+          <AddGift user={props.user} />
         </Grid>
         <Grid item xs />
       </Grid>

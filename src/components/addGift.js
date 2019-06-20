@@ -10,15 +10,45 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
+  Paper,
   Button,
   Grid,
-  Typography
+  Typography,
+  FormControl
 } from '@material-ui/core/'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from '@material-ui/pickers'
+import { withStyles, createMuiTheme } from '@material-ui/core/styles'
+
+const theme = createMuiTheme()
+
+const styles = {
+  root: {
+    display: 'flex'
+  },
+  image: {
+    width: 400,
+    height: 400,
+    top: -50
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    width: '100%'
+  },
+  button: {
+    margin: theme.spacing(0, 1),
+    padding: theme.spacing(1, 1, 1, 1)
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 300
+  }
+}
 
 class AddListing extends Component {
   state = {
@@ -40,12 +70,12 @@ class AddListing extends Component {
     }
   }
 
-  submitForm = event => {
-    event.preventDefault()
+  submitForm = () => {
     API.addGift(this.state).then(data => {
       if (data.error) {
         alert(`${data.error} Internal server error.`)
       } else {
+        window.location.reload()
         this.props.history.push(`/gifts/${data.id}`)
       }
     })
@@ -66,148 +96,211 @@ class AddListing extends Component {
       description,
       exchange1_datetime,
       exchange1_location,
+      exchange2_datetime,
+      exchange2_location,
       expiry,
       image
     } = this.state
     const { submitForm, handleChange, handleDateChange } = this
+    const { classes } = this.props
     // if (user && user.locations) {
     return (
-      <Fragment>
-        <Grid container>
-          <form onSubmit={submitForm}>
-            <Grid item xs>
-              <div>
-                <Typography gutterBottom variant='h5'>
-                  Title:
-                </Typography>
-                <TextField
-                  id='title'
-                  name='title'
-                  value={title}
-                  onChange={handleChange}
-                  margin='normal'
-                />
-                <Typography gutterBottom variant='h5'>
-                  <b>DESCRIPTION:</b>
-                  <TextField
-                    id='description'
-                    name='description'
-                    value={description}
-                    onChange={handleChange}
-                    helperText='Describe the gift in detail including its condition, and any other info that you might want other glūckers to know'
-                    margin='normal'
-                  />
-                </Typography>
-                <Typography gutterBottom variant='h5'>
-                  Expiry:
-                </Typography>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    margin='normal'
-                    id='mui-pickers-date'
-                    label='Date picker'
-                    value={expiry}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                      'aria-label': 'change date'
-                    }}
-                  />
-                </MuiPickersUtilsProvider>
-                <Typography gutterBottom variant='h5'>
-                  Your date/time availabilities
-                </Typography>
-                <TextField
-                  id='exchange1_datetime'
-                  name='exchange1_datetime'
-                  value={exchange1_datetime}
-                  onChange={handleChange}
-                  margin='normal'
-                />
-                <Typography gutterBottom variant='h5'>
-                  Preferred Meeting Location
-                </Typography>
-                <TextField
-                  id='exchange1_location'
-                  name='exchange1_location'
-                  value={exchange1_location}
-                  onChange={handleChange}
-                  margin='normal'
-                />
-              </div>
-            </Grid>
-            <Grid item xs={1} />
-            <Grid item xs={5}>
-              <Grid container>
-                <Grid item>
-                  <input
-                    accept='image/*'
-                    // className={classes.input}
-                    id='icon-button-file'
-                    type='file'
-                  />
-                  <label htmlFor='icon-button-file'>
-                    <IconButton
-                      color='primary'
-                      // className={classes.button}
-                      aria-label='Upload picture'
-                      component='span'
-                    >
-                      <PhotoCamera />
-                    </IconButton>
-                  </label>
-                  <TextField
-                    id='image'
-                    name='image'
-                    value={image}
-                    onChange={handleChange}
-                    helperText='insert a URL'
-                    margin='normal'
-                  />
-                </Grid>
-                <Grid container alignItems='center'>
-                  <Grid item xs={3} />
-                  <Grid item xs={6} id='centerContentInGrid' />
-                  <Grid item xs={3} />
-                  <Grid item xs={3} />
-                  <Grid item xs={6} id='centerContentInGrid'>
-                    <div>
-                      <Button
-                        size='small'
-                        variant='contained'
-                        color='secondary'
-                        noWrap
-                        // className={classes.button}
-                        id='buttonCenter'
-                        type='submit'
-                      >
-                        Add Gift
-                      </Button>
-                    </div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    {/* <Button
-                      size='small'
-                      variant='contained'
-                      color='secondary'
-                      className={classes.button}
-                      noWrap
-                      onClick={() => props.handleEditMode()}
-                    >
-                      View More Items by the same gifter
-                    </Button> */}
-                  </Grid>
-                  <Grid item xs={2} />
-                </Grid>
-              </Grid>
-            </Grid>
-          </form>
+      <Grid
+        container
+        name='paper'
+        direction='row'
+        justify='flex-start'
+        alignItems='flex-start'
+      >
+        <Grid item xs>
+          <Typography gutterBottom variant='h5'>
+            Title:
+          </Typography>
+          <TextField
+            id='title'
+            name='title'
+            value={title}
+            onChange={handleChange}
+            margin='normal'
+            variant='outlined'
+            helperText='Give a short title for your item.'
+          />
+          <Typography gutterBottom variant='h5'>
+            Description:
+            <br />
+            <TextField
+              id='description'
+              multiline
+              name='description'
+              rows='5'
+              value={description}
+              onChange={handleChange}
+              margin='normal'
+              helperText='Describe the gift in detail including its condition, and any other info about the gift that is important for other glūckers to know.'
+              variant='outlined'
+            />
+          </Typography>
+          {/* <Typography gutterBottom variant='h5'>
+            Expiry:
+          </Typography>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              margin='normal'
+              id='mui-pickers-date'
+              label='Date picker'
+              value={expiry}
+              onChange={handleDateChange}
+              KeyboardButtonProps={{
+                'aria-label': 'change date'
+              }}
+            />
+          </MuiPickersUtilsProvider> */}
+          <Typography gutterBottom variant='h5'>
+            Offer some availabilities to meet and exchange:
+          </Typography>
+          <Typography gutterBottom variant='h6'>
+            Date/Time:
+          </Typography>
+          <TextField
+            id='exchange1_datetime'
+            name='exchange1_datetime'
+            value={exchange1_datetime}
+            onChange={handleChange}
+            margin='normal'
+            // variant='outlined'
+            placeholder='First option'
+            helperText="E.g.: 'Office hours 9-5', 'weekday evenings', 'weekends'"
+          />
+          <Typography gutterBottom variant='h6'>
+            Meeting location:
+          </Typography>
+          <TextField
+            id='exchange1_location'
+            name='exchange1_location'
+            value={exchange1_location}
+            onChange={handleChange}
+            margin='normal'
+            placeholder='First option'
+            // variant='outlined'
+            helperText="E.g.: 'WC1R', 'Covent Garden', 'Waterloo station'"
+          />
+          <Typography gutterBottom variant='h6'>
+            Date/Time:
+          </Typography>
+          <TextField
+            id='exchange2_datetime'
+            name='exchange2_datetime'
+            value={exchange2_datetime}
+            onChange={handleChange}
+            margin='normal'
+            placeholder='Second option'
+            // variant='outlined'
+            helperText="E.g.: 'Office hours 9-5', 'weekday evenings', 'weekends'"
+          />
+          <Typography gutterBottom variant='h6'>
+            Meeting location:
+          </Typography>
+          <TextField
+            id='exchange2_location'
+            name='exchange2_location'
+            value={exchange2_location}
+            onChange={handleChange}
+            margin='normal'
+            placeholder='Second option'
+            // variant='outlined'
+            helperText="E.g.: 'WC1R', 'Covent Garden', 'Waterloo station'"
+          />
         </Grid>
-      </Fragment>
+        <Grid item xs={1} />
+        <Grid item xs={4}>
+          <Typography gutterBottom variant='h5'>
+            Add An Image:
+          </Typography>
+          <Grid container>
+            <Grid item>
+              <div onClick={() => alert('Feature coming soon!')}>
+                <input
+                  accept='image/*'
+                  disabled
+                  id='icon-button-file'
+                  type='file'
+                />
+                <label htmlFor='icon-button-file'>
+                  <IconButton
+                    color='primary'
+                    aria-label='Upload picture'
+                    component='span'
+                  >
+                    <PhotoCamera />
+                  </IconButton>
+                </label>
+              </div>
+              <TextField
+                id='image'
+                name='image'
+                value={image}
+                onChange={handleChange}
+                helperText='Insert a URL'
+                margin='normal'
+              />
+            </Grid>
+            <Grid item>
+              <br />
+              <Typography gutterBottom variant='h6'>
+                When do you want this listing to expire?
+              </Typography>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  margin='normal'
+                  id='mui-pickers-date'
+                  label='Date picker'
+                  value={expiry}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date'
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid container alignItems='center'>
+          <Grid item xs={3} />
+          <Grid item xs={6} id='centerContentInGrid'>
+            <div>
+              <Button
+                size='large'
+                variant='contained'
+                color='secondary'
+                noWrap
+                // className={classes.button}
+                id='buttonCenter'
+                type='submit'
+                onClick={() => submitForm()}
+              >
+                Add Gift
+              </Button>
+            </div>
+          </Grid>
+          <Grid item xs={3}>
+            {/* <Button
+                  size='small'
+                  variant='contained'
+                  color='secondary'
+                  className={classes.button}
+                  noWrap
+                  // onClick={() => props.handleEditMode()}
+                >
+                  View More Items by the same gifter
+                </Button> */}
+          </Grid>
+        </Grid>
+      </Grid>
     )
   }
 }
 
-export default withRouter(AddListing)
+export default withRouter(withStyles(styles, { WithTheme: true })(AddListing))
 
 {
   /* <h4>Where can the recipient pickup this item?</h4>
