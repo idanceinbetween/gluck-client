@@ -3,34 +3,44 @@ import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import API from '../../API'
-import {
-  Grid,
-  Typography,
-  MenuItem,
-  TextField,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  Button,
-  Link,
-  ButtonBase
-} from '@material-ui/core/'
+import { Grid, Typography, TextField, Button } from '@material-ui/core/'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from '@material-ui/pickers'
+import { withStyles, createMuiTheme } from '@material-ui/core/styles'
 
-const renderGiftsList = gifts => {
-  if (gifts) {
-    return gifts.map(gift => {
-      return (
-        <MenuItem key={gift.id} value={gift.id}>
-          {gift.title}
-        </MenuItem>
-      )
-    })
-  } else return <MenuItem>You don't have any gifts to list.</MenuItem>
+const theme = createMuiTheme()
+
+const styles = {
+  root: {
+    display: 'flex'
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 1000
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(1)
+  },
+  image: {
+    width: 400,
+    height: 400,
+    top: -50
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    width: '100%'
+  },
+  button: {
+    margin: theme.spacing(0, 1),
+    padding: theme.spacing(1, 1, 1, 1)
+  }
 }
 
 class SingleGiftEdit extends Component {
@@ -80,39 +90,126 @@ class SingleGiftEdit extends Component {
       image,
       exchange1_datetime,
       exchange1_location,
+      exchange2_datetime,
+      exchange2_location,
       expiry
     } = this.state
     const { submitForm, handleChange, handleDateChange } = this
-
+    const { classes } = this.props
     return (
-      <Fragment>
-        <Grid container spacing={2} id='big_container'>
-          <form onSubmit={event => submitForm(this.props, event)}>
-            <Grid item md id='text'>
-              <Typography gutterBottom variant='subtitle1'>
-                <b>TITLE:</b>
-              </Typography>
-              <br />
-              <TextField
-                id='title'
-                name='title'
-                value={title}
-                onChange={handleChange}
-                margin='normal'
+      <Grid
+        container
+        name='paper'
+        direction='row'
+        justify='flex-start'
+        alignItems='flex-start'
+      >
+        <Grid item xs>
+          <Typography gutterBottom variant='h4'>
+            Edit Your Gift
+          </Typography>
+          <Typography gutterBottom variant='h5'>
+            Title:
+          </Typography>
+          <TextField
+            id='title'
+            name='title'
+            value={title}
+            onChange={handleChange}
+            margin='normal'
+            variant='outlined'
+            helperText='Give a short title for your item.'
+          />
+          <Typography gutterBottom variant='p'>
+            Description:
+            <br />
+            <TextField
+              id='description'
+              multiline
+              name='description'
+              rows='3'
+              value={description}
+              onChange={handleChange}
+              margin='normal'
+              helperText='Describe the gift in detail including its condition, and any other info about the gift that is important for other glūckers to know.'
+              variant='outlined'
+            />
+          </Typography>
+          <Typography gutterBottom variant='p'>
+            Offer some availabilities to meet and exchange:
+          </Typography>
+          <Typography gutterBottom variant='p'>
+            Date/Time:
+          </Typography>
+          <TextField
+            id='exchange1_datetime'
+            name='exchange1_datetime'
+            value={exchange1_datetime}
+            onChange={handleChange}
+            margin='normal'
+            placeholder='First option'
+            helperText="E.g.: 'Office hours 9-5', 'weekday evenings', 'weekends'"
+          />
+          <Typography gutterBottom variant='p'>
+            Meeting location:
+          </Typography>
+          <TextField
+            id='exchange1_location'
+            name='exchange1_location'
+            value={exchange1_location}
+            onChange={handleChange}
+            margin='normal'
+            placeholder='First option'
+            helperText="E.g.: 'WC1R', 'Covent Garden', 'Waterloo station'"
+          />
+          <Typography gutterBottom variant='p'>
+            Date/Time:
+          </Typography>
+          <TextField
+            id='exchange2_datetime'
+            name='exchange2_datetime'
+            value={exchange2_datetime}
+            onChange={handleChange}
+            margin='normal'
+            placeholder='Second option'
+            helperText="E.g.: 'Office hours 9-5', 'weekday evenings', 'weekends'"
+          />
+          <Typography gutterBottom variant='p'>
+            Meeting location:
+          </Typography>
+          <TextField
+            id='exchange2_location'
+            name='exchange2_location'
+            value={exchange2_location}
+            onChange={handleChange}
+            margin='normal'
+            placeholder='Second option'
+            // variant='outlined'
+            helperText="E.g.: 'WC1R', 'Covent Garden', 'Waterloo station'"
+          />
+        </Grid>
+        <Grid item xs={1} />
+        <Grid item xs={6}>
+          {/* <Typography gutterBottom variant='p'>
+            Add An Image:
+          </Typography> */}
+          <Grid container>
+            <Grid item>
+              <img
+                className={classes.img}
+                alt={`${title}`}
+                src={`${image}`}
+                width='300px'
               />
-              <Typography variant='body2' gutterBottom>
-                <b>DESCRIPTION:</b>
+              <Typography variant='p'>
+                Image edit feature coming soon!
               </Typography>
+            </Grid>
+            <Grid item>
               <br />
-              <TextField
-                id='description'
-                label='Select'
-                value={description}
-                onChange={handleChange}
-                helperText='Describe the gift in detail including its condition, and any other info that you might want other glūckers to know'
-                margin='normal'
-              />
-              <p>Expiry:</p>
+              <Typography gutterBottom variant='h6'>
+                When do you want this listing to expire?
+              </Typography>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
                   margin='normal'
@@ -125,77 +222,50 @@ class SingleGiftEdit extends Component {
                   }}
                 />
               </MuiPickersUtilsProvider>
-              <p>Exchange Date/Time:</p>
-              <TextField
-                id='exchange1_datetime'
-                name='exchange1_datetime'
-                value={exchange1_datetime}
-                onChange={handleChange}
-                margin='normal'
-              />
-              <p>Exchange Location:</p>
-              <br />
-              {user.locations && (
-                <RadioGroup
-                  aria-label='Location'
-                  name='exchange1_location'
-                  value={exchange1_location}
-                  onChange={handleChange}
-                >
-                  {user.locations.length > 0 && (
-                    <Fragment>
-                      <FormControlLabel
-                        value={user.locations[0].postcode}
-                        control={<Radio />}
-                        label={`${user.locations[0].address}, ${
-                          user.locations[0].city
-                        }, ${user.locations[0].postcode} (${
-                          user.locations[0].label
-                        })`}
-                      />
-                      <FormControlLabel
-                        value={user.locations[1].postcode}
-                        control={<Radio />}
-                        label={`${user.locations[1].address}, ${
-                          user.locations[1].city
-                        }, ${user.locations[1].postcode} (${
-                          user.locations[1].label
-                        })`}
-                      />
-                    </Fragment>
-                  )}
-                  {user.locations.length === 0 && (
-                    <Fragment>
-                      You don't have any addresses listed, please add this from
-                      <Link to='/myaccount'>My Account</Link>.
-                    </Fragment>
-                  )}
-                </RadioGroup>
-              )}
             </Grid>
-            <Grid container id='container2' md>
-              <Grid container id='pic'>
-                {/* <ButtonBase className={classes.image}>
-                  <img
-                    className={classes.img}
-                    alt={`${gift.title}`}
-                    src={`${gift.image}`}
-                  />
-                </ButtonBase> */}
-                <Grid container spacing={1}>
-                  <Grid item id='button'>
-                    <Button variant='contained' type='submit'>
-                      Submit Edits
-                    </Button>
-                  </Grid>
-                </Grid>
+          </Grid>
+        </Grid>
+        <Grid container alignItems='center'>
+          <Grid item xs={3} />
+          <Grid item xs={6} id='centerContentInGrid'>
+            <Grid container>
+              <Grid item xs={3} />
+
+              <Grid item xs={2} />
+              <Grid item xs>
+                <Button
+                  size=''
+                  variant='contained'
+                  color='secondary'
+                  noWrap
+                  className={classes.button}
+                  id='buttonCenter'
+                  type='submit'
+                  onClick={() => submitForm()}
+                >
+                  Edit
+                </Button>
+                <Button
+                  size='large'
+                  variant='contained'
+                  noWrap
+                  className={classes.button}
+                  id='buttonCenter'
+                  type='submit'
+                  onClick={() => handleEditMode()}
+                >
+                  Cancel
+                </Button>
               </Grid>
             </Grid>
-          </form>
+          </Grid>
+          <Grid item xs={3} />
         </Grid>
-      </Fragment>
+      </Grid>
     )
   }
 }
 
-export default withRouter(SingleGiftEdit)
+export default withRouter(
+  withStyles(styles, { WithTheme: true })(SingleGiftEdit)
+)

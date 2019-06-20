@@ -70,8 +70,6 @@ class SingleGiftCanvas extends Component {
 
   handleEditMode = () => this.setState({ editMode: !this.state.editMode })
 
-  handleEditSubmit = () => console.log('editing!')
-
   createExchange = exchangeObj => {
     API.createExchange(exchangeObj).then(data => {
       if (data.error) {
@@ -86,7 +84,7 @@ class SingleGiftCanvas extends Component {
   render() {
     const { gift, giftOwner, editMode } = this.state
     const { user, classes } = this.props
-    const { handleEditMode, handleEditSubmit, createExchange } = this
+    const { handleEditMode, createExchange } = this
     return (
       <Fragment>
         <Grid container>
@@ -108,7 +106,7 @@ class SingleGiftCanvas extends Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <Paper className={classes.paper}>
               {gift && !editMode && (
                 <SingleGift
@@ -125,7 +123,6 @@ class SingleGiftCanvas extends Component {
                 <SingleGiftEdit
                   gift={gift}
                   handleEditMode={handleEditMode}
-                  handleEditSubmit={obj => handleEditSubmit(obj)}
                   user={user}
                 />
               )}
