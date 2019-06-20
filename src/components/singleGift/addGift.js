@@ -147,7 +147,7 @@ class AddListing extends Component {
             />
           </MuiPickersUtilsProvider> */}
           <Typography gutterBottom variant='h5'>
-            Offer some availabilities to meet and exchange:
+            Offer some guidelines of your availabilities to meet:
           </Typography>
           <Typography gutterBottom variant='h6'>
             Date/Time:

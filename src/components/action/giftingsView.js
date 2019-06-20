@@ -151,7 +151,12 @@ const renderResults = props => {
 }
 
 const findGiftPairsRequested = (user, id) => {
-  let findGiftings = user.giftings.filter(g => g.recipient_id === id)
+  let findGiftings = user.giftings.filter(
+    g =>
+      g.recipient_id === id &&
+      g.exchange_stat_id !== 5 &&
+      g.exchange_stat_id !== 4
+  )
   let giftPairs = []
   findGiftings.forEach(gifting => {
     const pair = {}

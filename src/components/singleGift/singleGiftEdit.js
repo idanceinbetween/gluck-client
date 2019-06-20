@@ -61,14 +61,13 @@ class SingleGiftEdit extends Component {
     })
   }
 
-  submitForm = (props, event) => {
-    event.preventDefault()
+  submitForm = () => {
     API.editGift(this.state).then(data => {
       if (data.error) {
         console.log('error')
       } else {
         alert('Your gift has been updated!')
-        props.handleEditMode()
+        this.props.handleEditMode()
         this.props.history.push(`/gifts/${data.id}`)
       }
     })

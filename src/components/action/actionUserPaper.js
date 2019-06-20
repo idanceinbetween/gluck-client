@@ -8,7 +8,8 @@ import {
   ListItemIcon,
   ListItemText,
   Checkbox,
-  CircularProgress
+  CircularProgress,
+  Tooltip
 } from '@material-ui/core/'
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -103,18 +104,20 @@ const renderColourBasedOnExchangeStat = (props, pair) => {
             ')'
           }
         />
-        <DeleteIcon
-          onClick={() => {
-            let r = window.confirm(
-              'Are you sure you want to delete this exchange?'
-            )
-            if (r) {
-              props.cancelSingleGifting(pair.gifting_id)
-            } else {
-              return null
-            }
-          }}
-        />
+        <Tooltip title='Delete this specific exchange' placement='right'>
+          <DeleteIcon
+            onClick={() => {
+              let r = window.confirm(
+                'Are you sure you want to delete this exchange?'
+              )
+              if (r) {
+                props.cancelSingleGifting(pair.gifting_id)
+              } else {
+                return null
+              }
+            }}
+          />
+        </Tooltip>
       </Fragment>
     )
   } else if (props.onholdGiftingsIds.includes(pair.gifting_id)) {
@@ -140,18 +143,20 @@ const renderColourBasedOnExchangeStat = (props, pair) => {
             ')'
           }
         />
-        <DeleteIcon
-          onClick={() => {
-            let r = window.confirm(
-              'Are you sure you want to delete this exchange?'
-            )
-            if (r) {
-              props.cancelSingleGifting(pair.gifting_id)
-            } else {
-              return null
-            }
-          }}
-        />
+        <Tooltip title='Delete this specific exchange' placement='right'>
+          <DeleteIcon
+            onClick={() => {
+              let r = window.confirm(
+                'Are you sure you want to delete this exchange?'
+              )
+              if (r) {
+                props.cancelSingleGifting(pair.gifting_id)
+              } else {
+                return null
+              }
+            }}
+          />
+        </Tooltip>
       </Fragment>
     )
   } else if (props.requestedGiftingsIds.includes(pair.gifting_id)) {
@@ -175,18 +180,20 @@ const renderColourBasedOnExchangeStat = (props, pair) => {
             ')'
           }
         />
-        <DeleteIcon
-          onClick={() => {
-            let r = window.confirm(
-              'Are you sure you want to delete this exchange?'
-            )
-            if (r) {
-              props.cancelSingleGifting(pair.gifting_id)
-            } else {
-              return null
-            }
-          }}
-        />
+        <Tooltip title='Delete this specific exchange' placement='right'>
+          <DeleteIcon
+            onClick={() => {
+              let r = window.confirm(
+                'Are you sure you want to delete this exchange?'
+              )
+              if (r) {
+                props.cancelSingleGifting(pair.gifting_id)
+              } else {
+                return null
+              }
+            }}
+          />
+        </Tooltip>
       </Fragment>
     )
   }

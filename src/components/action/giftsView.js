@@ -59,11 +59,10 @@ const filterGifts = (myGifts, myGiftings, giftsFilter) => {
   const myActiveGifts = myGifts.filter(
     gift => !myArchivedGiftsIds.includes(gift.id)
   ) //these are all gifts still active, requested or not.
-
   const myRequestedGifts = []
   const myLonelyGifts = []
   myActiveGifts.map(gift => {
-    if (myActiveGiftings.map(gifting => gifting.gift_id === gift.id)) {
+    if (myActiveGiftings.find(g => g.gift_id === gift.id)) {
       myRequestedGifts.push(gift)
     } else myLonelyGifts.push(gift)
   })

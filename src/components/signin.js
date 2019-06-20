@@ -1,6 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import { TextField, Grid, Button, CircularProgress } from '@material-ui/core/'
-import { usePickerState } from '@material-ui/pickers'
+import { withStyles, createMuiTheme } from '@material-ui/core/styles'
+import { withRouter } from 'react-router-dom'
+
+const theme = createMuiTheme()
+
+const styles = {
+  button: {
+    margin: theme.spacing(0, 1),
+    padding: theme.spacing(1, 1, 1, 1)
+  }
+}
 
 class Signin extends Component {
   state = {
@@ -20,7 +30,7 @@ class Signin extends Component {
     }
   }
 
-  renderStartPage = ({ checkEmail, errorMessage }) => {
+  renderStartPage = ({ checkEmail, errorMessage, classes }) => {
     return (
       <Fragment>
         <h1 align='center'>Let's get started!</h1>
@@ -42,7 +52,12 @@ class Signin extends Component {
           />
           <br />
 
-          <Button variant='contained' type='submit' color='secondary'>
+          <Button
+            variant='contained'
+            type='submit'
+            color='secondary'
+            className={classes.button}
+          >
             Get Started
           </Button>
         </form>
@@ -50,7 +65,7 @@ class Signin extends Component {
     )
   }
 
-  renderSigninForm = ({ signIn }) => {
+  renderSigninForm = ({ signIn, classes }) => {
     return (
       <Fragment>
         <h1>Welcome back, glūcker!</h1>
@@ -82,13 +97,19 @@ class Signin extends Component {
             margin='normal'
           />
           <br />
-          <Button variant='contained' type='submit' color='secondary'>
+          <Button
+            variant='contained'
+            type='submit'
+            color='secondary'
+            className={classes.button}
+          >
             Login
           </Button>
           <Button
             variant='contained'
             color='secondary'
             onClick={() => this.props.changeFormToShow('')}
+            className={classes.button}
           >
             Go back
           </Button>
@@ -97,7 +118,7 @@ class Signin extends Component {
     )
   }
 
-  renderSignupForm = ({ email, signUp, users }) => {
+  renderSignupForm = ({ email, signUp, users, classes }) => {
     return (
       <Fragment>
         <h1>Hey there, welcome!</h1>
@@ -148,13 +169,19 @@ class Signin extends Component {
             margin='normal'
           />
           <br />
-          <Button variant='contained' type='submit' color='secondary'>
+          <Button
+            variant='contained'
+            type='submit'
+            color='secondary'
+            className={classes.button}
+          >
             Sign Up
           </Button>
           <Button
             variant='contained'
             color='secondary'
             onClick={() => this.props.changeFormToShow('')}
+            className={classes.button}
           >
             Go back
           </Button>
@@ -164,6 +191,7 @@ class Signin extends Component {
   }
 
   render() {
+    const { classes } = this.props
     if (this.props.formToShow !== null) {
       return (
         <Fragment>
@@ -180,4 +208,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin
+export default withRouter(withStyles(styles, { WithTheme: true })(Signin))
