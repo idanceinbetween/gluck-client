@@ -117,8 +117,8 @@ const renderNonOwnerButtons = (props, classes) => {
               </Button>
             </div>
           </Grid>
-          <Grid item xs={3}>
-            {/* <Button
+          {/* <Grid item xs={3}>
+            <Button
                       size='small'
                       variant='contained'
                       color='secondary'
@@ -127,8 +127,8 @@ const renderNonOwnerButtons = (props, classes) => {
                       onClick={() => props.handleEditMode()}
                     >
                       View More Items by the same gifter
-                    </Button> */}
-          </Grid>
+                    </Button>
+          </Grid> */}
         </Grid>
       </Fragment>
     )

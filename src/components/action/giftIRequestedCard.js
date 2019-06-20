@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import {
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
   CardMedia,
-  Button,
   Typography,
   makeStyles
 } from '@material-ui/core/'
@@ -23,12 +22,12 @@ const useStyles = makeStyles({
 const findOwnerOfGift = (users, gift) =>
   users.find(user => user.id === gift.gifter_id)
 
-const GiftIRequestedCard = ({ users, gift }) => {
+const GiftIRequestedCard = ({ users, gift, history }) => {
   const classes = useStyles()
   return (
     <Fragment>
       <Card className={classes.card}>
-        <CardActionArea>
+        <CardActionArea onClick={() => history.push(`/gifts/${gift.id}`)}>
           <CardMedia
             className={classes.media}
             title={gift.title}
@@ -45,19 +44,9 @@ const GiftIRequestedCard = ({ users, gift }) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        {/* <CardActions>
-          <Button size='small' color='primary'>
-            Edit/Delete
-          </Button>
-          {calculateRequestsOfThisGift(user, gift) > 0 && (
-            <Button size='small' color='primary' onClick={() => changeTab(1)}>
-              Manage Gifting
-            </Button>
-          )}
-        </CardActions> */}
       </Card>
     </Fragment>
   )
 }
 
-export default GiftIRequestedCard
+export default withRouter(GiftIRequestedCard)

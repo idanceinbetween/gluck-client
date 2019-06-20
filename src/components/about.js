@@ -12,9 +12,10 @@ const styles = {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     width: `calc(103vw)`,
-    margin: -10,
+    margin: 0,
     padding: 20,
-    opacity: 0.8
+    opacity: 0.8,
+    backgroundAttachment: 'fixed'
   }
 }
 //dark
@@ -35,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const About = props => {
+const About = () => {
   const classes = useStyles()
   return (
     <Grid
@@ -48,6 +49,7 @@ const About = props => {
       <Grid item xs={2} className={classes.empty} />
       <Grid item xs={4}>
         <Typography className={classes.text}>
+          <h2>about</h2>
           <p>
             <b>glūck</b> manages the gifting of your unwanted items;
             <br /> <i>easily</i>, <b>happily</b>.
@@ -64,7 +66,9 @@ const About = props => {
             Offer items to users in one click, while other users who want the
             same item are automatically notified of your decision.
           </li>
-          <p>Because gifting should make you happy, too.</p>
+          <p>
+            <i>Because gifting should make you happy, too.</i>
+          </p>
         </Typography>
         <Grid container direction='row'>
           <Grid item xs />

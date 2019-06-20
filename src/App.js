@@ -145,7 +145,7 @@ class App extends Component {
       case '/':
         return this.setState({ pageTitle: '' })
       case '/about':
-        return this.setState({ pageTitle: 'About' })
+        return this.setState({ pageTitle: ' ' })
       case '/action':
         return this.setState({ pageTitle: 'Action Panel' })
       case '/schedule':
@@ -155,7 +155,9 @@ class App extends Component {
       case '/start':
         return this.setState({ pageTitle: 'Sign In or Sign Up' })
       case '/gifts/add':
-        return this.setState({ pageTitle: 'Add A Gift' })
+        return this.setState({ pageTitle: ' ' })
+      case '/gifts':
+        return this.setState({ pageTitle: ' ' })
       default:
         return this.setState({ pageTitle: 'glūck' })
     }

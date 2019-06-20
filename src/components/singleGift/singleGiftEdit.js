@@ -105,9 +105,8 @@ class SingleGiftEdit extends Component {
         alignItems='flex-start'
       >
         <Grid item xs>
-          <Typography gutterBottom variant='h4'>
-            Edit Your Gift
-          </Typography>
+          <h1>Edit Your Gift</h1>
+
           <Typography gutterBottom variant='h5'>
             Title:
           </Typography>

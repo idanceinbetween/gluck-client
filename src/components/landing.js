@@ -11,7 +11,8 @@ const styles = {
     backgroundPosition: 'center',
     width: `calc(100vw)`,
     margin: -8,
-    padding: 24
+    // padding: 24,
+    backgroundAttachment: 'fixed'
   }
 }
 

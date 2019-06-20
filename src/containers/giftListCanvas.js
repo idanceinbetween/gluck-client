@@ -29,7 +29,7 @@ class GiftListCanvas extends Component {
     const { changeSortBy, search, searchOnChange } = this
     return (
       <Container>
-        <h1>All gifts</h1>
+        <h1>All Gifts</h1>
         <Grid item xs={12}>
           <GiftListSubmenu
             changeSortBy={str => changeSortBy(str)}
