@@ -9,7 +9,8 @@ import {
   TableHead,
   TableRow,
   Paper,
-  CircularProgress
+  CircularProgress,
+  Container
 } from '@material-ui/core'
 import DATE from '../Date'
 
@@ -22,7 +23,7 @@ const findGifter = (users, id) => {
   }
 }
 
-const mapGiftsByExpiry = props => {
+const sortAndMapGifts = props => {
   let gifts = [...props.gifts].filter(gift => {
     return (
       gift.title.toLowerCase().includes(props.searchTerm.toLowerCase()) &&
@@ -51,7 +52,7 @@ const mapGiftsByExpiry = props => {
       </Paper>
     )
   } else {
-    if (props.sortByExpiry === 'asc') {
+    if (props.sortBy === 'asc') {
       // eslint-disable-next-line
       gifts.sort((a, b) => {
         let dateA = new Date(a.expiry)
@@ -60,7 +61,7 @@ const mapGiftsByExpiry = props => {
         if (dateA < dateB) return -1
         if (dateA === dateB) return 0
       })
-    } else if (props.sortByExpiry === 'dsc') {
+    } else if (props.sortBy === 'dsc') {
       // eslint-disable-next-line
       gifts.sort((a, b) => {
         let dateA = new Date(a.expiry)
@@ -69,6 +70,9 @@ const mapGiftsByExpiry = props => {
         if (dateA < dateB) return 1
         if (dateA === dateB) return 0
       })
+    } else if (props.sortBy === '') {
+      // eslint-disable-next-line
+      gifts.reverse()
     }
     return (
       <Paper>
@@ -77,9 +81,9 @@ const mapGiftsByExpiry = props => {
             <TableRow>
               <TableCell>Item</TableCell>
               <TableCell>Gifter</TableCell>
-              <TableCell>Expiry Date</TableCell>
               <TableCell>Preferred Meeting</TableCell>
-              <TableCell>Posting Date</TableCell>
+              <TableCell>Listing Expiry Date</TableCell>
+              <TableCell>Listing Posted</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -97,12 +101,12 @@ const mapGiftsByExpiry = props => {
                     <CircularProgress />
                   )}
                 </TableCell>
-                <TableCell>{DATE.convert(gift.expiry)}</TableCell>
                 <TableCell>
                   {gift.exchange1_location}
                   <br />
                   {gift.exchange1_datetime}
                 </TableCell>
+                <TableCell>{DATE.convert(gift.expiry)}</TableCell>
                 <TableCell>{DATE.convert(gift.created_at)}</TableCell>
               </TableRow>
             ))}
@@ -117,7 +121,7 @@ const GiftList = props => {
   if (props.gifts) {
     return (
       <Fragment>
-        {props.gifts.length > 0 ? mapGiftsByExpiry(props) : null}
+        {props.gifts.length > 0 ? sortAndMapGifts(props) : null}
       </Fragment>
     )
   } else {

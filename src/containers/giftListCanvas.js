@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react'
 
-import { Grid } from '@material-ui/core'
+import { Grid, Container } from '@material-ui/core'
 
 import GiftList from '../components/giftList'
 import GiftListSubmenu from '../components/giftListSubmenu'
 
 class GiftListCanvas extends Component {
   state = {
-    sortByExpiry: '',
+    sortBy: '',
     searchTerm: ''
   }
 
@@ -21,32 +21,36 @@ class GiftListCanvas extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  changeSortByExpiry = str => this.setState({ sortByExpiry: str })
+  changeSortBy = str => this.setState({ sortBy: str })
 
   render() {
-    const { sortByExpiry, searchTerm } = this.state
-    const { bgcolor, today, gifts, users } = this.props
-    const { search, searchOnChange } = this
+    const { sortBy, searchTerm } = this.state
+    const { today, gifts, users } = this.props
+    const { changeSortBy, search, searchOnChange } = this
     return (
-      <Fragment>
-        <Grid item xs={9}>
-          <h1>All gifts</h1>
-          <GiftList
-            today={today}
-            gifts={gifts}
-            users={users}
-            searchTerm={searchTerm}
-            sortByExpiry={sortByExpiry}
-          />
-        </Grid>
-        <Grid item xs>
+      <Container>
+        <h1>All gifts</h1>
+        <Grid item xs={12}>
           <GiftListSubmenu
-            sortByExpiry={str => this.changeSortByExpiry(str)}
+            changeSortBy={str => changeSortBy(str)}
+            sortBy={sortBy}
             search={event => search(event)}
             searchOnChange={event => searchOnChange(event)}
           />
         </Grid>
-      </Fragment>
+        <Grid item xs={12} name='list holder'>
+          <Grid container name='list holder innercon' />
+          <Grid item xs={12}>
+            <GiftList
+              today={today}
+              gifts={gifts}
+              users={users}
+              searchTerm={searchTerm}
+              sortBy={sortBy}
+            />
+          </Grid>
+        </Grid>
+      </Container>
     )
   }
 }

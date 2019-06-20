@@ -1,5 +1,13 @@
-import React from 'react'
-import { Container, Switch, Link, InputBase, Divider } from '@material-ui/core'
+import React, { Fragment } from 'react'
+import {
+  Container,
+  Chip,
+  Grid,
+  Switch,
+  Link,
+  InputBase,
+  Divider
+} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { fade, makeStyles } from '@material-ui/core/styles'
 
@@ -40,68 +48,136 @@ const useStyles = makeStyles(theme => ({
         width: 200
       }
     }
+  },
+  chip: {
+    margin: theme.spacing(1)
   }
 }))
 
 const ListingsSubmenu = props => {
   const classes = useStyles()
   return (
-    <Container maxWidth='xs'>
-      <h3>Listings Submenu</h3>
-      <div>
-        <b>Sort by</b>
-        <br />
-        <i>Expiry date: </i>
-        <Link onClick={() => props.sortByExpiry('asc')}>Ascending</Link> |{' '}
-        <Link onClick={() => props.sortByExpiry('dsc')}>Descending</Link>
-        <br />
-        <i>Posting date: </i>
-        <Link onClick={() => props.sortByExpiry('')}>Oldest</Link>
-      </div>
-      <br />
-      <div>
-        <form
-          className={classes.search}
-          onSubmit={event => {
-            event.preventDefault()
-            props.search()
-          }}
-        >
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder='Search for a gift'
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput
+    <Fragment>
+      <Grid container>
+        <Grid item xs={5}>
+          <form
+            className={classes.search}
+            onSubmit={event => {
+              event.preventDefault()
+              props.search()
             }}
-            inputProps={{ 'aria-label': 'Search' }}
-            onChange={event => props.searchOnChange(event)}
-            name='searchTerm'
-            id='searchTerm'
-          />
-        </form>
-      </div>
-      <br />
-      <Divider />
-      <br />
-      <i>Features coming soon</i>
-      <div onClick={() => alert('Feature coming soon')}>
-        <b>View As:</b> <br />
-        List
-        <Switch value='checked' color='default' disabled />
-        Grid
-      </div>
-      <div onClick={() => alert('Feature coming soon')}>
-        <p>
-          <b>Show within 5 miles of Your Location:</b>
-          <br /> Off
-          <Switch value='checked' color='default' disabled />
-          On
-        </p>
-      </div>
-    </Container>
+          >
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder='Search for a gift'
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              inputProps={{ 'aria-label': 'Search' }}
+              onChange={event => props.searchOnChange(event)}
+              name='searchTerm'
+              id='searchTerm'
+            />
+          </form>
+        </Grid>
+        <Grid item xs>
+          <Grid
+            container
+            direction='row'
+            justify='flex-end'
+            alignItems='flex-start'
+          >
+            <Grid item>
+              Sort by:{' '}
+              <Chip
+                label='Expiring soonest'
+                onClick={() => props.changeSortBy('asc')}
+                className={classes.chip}
+                color={props.sortBy === 'asc' ? 'secondary' : ''}
+              />
+              <Chip
+                label='Expiring latest'
+                onClick={() => props.changeSortBy('dsc')}
+                className={classes.chip}
+                color={props.sortBy === 'dsc' ? 'secondary' : ''}
+              />
+              <Chip
+                label='Oldest listing first'
+                onClick={() => props.changeSortBy('oldest')}
+                className={classes.chip}
+                color={props.sortBy === 'oldest' ? 'secondary' : ''}
+              />
+              <Chip
+                label='Newest listing first'
+                disabled
+                onClick={() => props.changeSortBy('')}
+                className={classes.chip}
+                color={props.sortBy === '' ? 'secondary' : ''}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Fragment>
+
+    // <h3>Listings Submenu</h3>
+    // <div>
+    //   <b>Sort by</b>
+    //   <br />
+    //   <i>Expiry date: </i>
+    //   <Link onClick={() => props.sortBy('asc')}>Ascending</Link> |{' '}
+    //   <Link onClick={() => props.sortBy('dsc')}>Descending</Link>
+    //   <br />
+    //   <i>Posting date: </i>
+    //   <Link onClick={() => props.sortBy('')}>Oldest</Link>
+    // </div>
+    // <br />
+    // <div>
+    //   <form
+    //   className={classes.search}
+    //   onSubmit={event => {
+    //     event.preventDefault()
+    //     props.search()
+    //   }}
+    //   >
+    //   <div className={classes.searchIcon}>
+    //     <SearchIcon />
+    //   </div>
+    //   <InputBase
+    //     placeholder='Search for a gift'
+    //     classes={{
+    //       root: classes.inputRoot,
+    //       input: classes.inputInput
+    //     }}
+    //     inputProps={{ 'aria-label': 'Search' }}
+    //     onChange={event => props.searchOnChange(event)}
+    //     name='searchTerm'
+    //     id='searchTerm'
+    //     />
+    // </form>
+    // </div>
+    //   <br />
+    //   <Divider />
+    //   <br />
+    //   <i>Features coming soon</i>
+    //   <div onClick={() => alert('Feature coming soon')}>
+    //     <b>View As:</b> <br />
+    //     List
+    //     <Switch value='checked' color='default' disabled />
+    //     Grid
+    //   </div>
+    //   <div onClick={() => alert('Feature coming soon')}>
+    //     <p>
+    //       <b>Show within 5 miles of Your Location:</b>
+    //       <br /> Off
+    //       <Switch value='checked' color='default' disabled />
+    //       On
+    //     </p>
+    //   </div>
+    // </Container>
   )
 }
 
