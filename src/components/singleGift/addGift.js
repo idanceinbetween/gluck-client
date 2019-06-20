@@ -5,17 +5,7 @@ import { withRouter } from 'react-router-dom'
 import API from '../../API'
 import IconButton from '@material-ui/core/IconButton'
 import PhotoCamera from '@material-ui/icons/PhotoCamera'
-import {
-  TextField,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  Paper,
-  Button,
-  Grid,
-  Typography,
-  FormControl
-} from '@material-ui/core/'
+import { TextField, Button, Grid, Typography } from '@material-ui/core/'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
@@ -132,7 +122,7 @@ class AddListing extends Component {
               id='description'
               multiline
               name='description'
-              rows='5'
+              rows='3'
               value={description}
               onChange={handleChange}
               margin='normal'
