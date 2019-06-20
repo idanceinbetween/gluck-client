@@ -136,6 +136,9 @@ const findUniqueUsersObjectsFromExchanges = (exchanges, users, me) => {
 const findCommittedGiftings = user =>
   user.giftings.filter(g => g.exchange_stat_id === 2)
 
+const findCommittedReceivings = user =>
+  user.receivings.filter(g => g.exchange_stat_id === 2)
+
 const exchangesOfThisUser = (user, str, exchanges, myself) => {
   switch (str) {
     case 'double':
@@ -152,15 +155,15 @@ const exchangesOfThisUser = (user, str, exchanges, myself) => {
 }
 
 const applyFilters = props => {
-  const myReceivings = props.user.receivings
   const myCommittedGiftings = findCommittedGiftings(props.user)
+  const myCommittedReceivings = findCommittedReceivings(props.user)
   switch (props.scheduleFilter) {
     case 'giftings':
       return myCommittedGiftings
     case 'receivings':
-      return myReceivings
+      return myCommittedReceivings
     default:
-      return myReceivings.concat(myCommittedGiftings).flat()
+      return myCommittedReceivings.concat(myCommittedGiftings).flat()
   }
 }
 
