@@ -17,7 +17,7 @@ class ActionCanvas extends Component {
     tabValue: this.props.tabValue,
     giftsFilter: 'allActive',
     sortRequester: 'asc',
-    myRequestsFilter: 'committed',
+    myRequestsFilter: 'all',
     scheduleFilter: 'all',
     requestedGiftingsIds: [],
     committedGiftingsIds: [],
@@ -297,7 +297,7 @@ class ActionCanvas extends Component {
           centered
         >
           <Tab label='Exchange Schedule' />
-          <Tab label="Gifts I'm Giving" />
+          <Tab label='Incoming Requests' />
           <Tab label='Gifts I Requested' />
           <Tab label='Gifts I Offer' />
         </Tabs>

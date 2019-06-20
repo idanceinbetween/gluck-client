@@ -14,10 +14,9 @@ const mapGiftsInMyReceivings = props => {
     )
 
     let finalGiftsToMap = filterGifts(
-      giftsObjsInMyReceivings,
       myReceivings,
-      props.myRequestsFilter,
-      props.gifts
+      props.gifts,
+      props.myRequestsFilter
     )
 
     if (finalGiftsToMap.length > 0) {
@@ -46,58 +45,98 @@ const mapGiftsInMyReceivings = props => {
   }
 }
 
-const filterGifts = (myRequestedGifts, myReceivings, giftsFilter, allGifts) => {
-  const pendingReceivings = myReceivings.filter(
-    gifting => gifting.exchange_stat_id === 1
-  )
-  const pendingReceivingsIds = pendingReceivings.map(gifting => gifting.id)
-  const pendingGifts = allGifts.filter(gift =>
-    pendingReceivingsIds.includes(gift.id)
-  )
+const filterGifts = (myReceivings, allGifts, strFilter) => {
+  let stat_id = findStatId(strFilter)
+  return findGiftsToMap(myReceivings, allGifts, stat_id)
+}
 
-  const confirmedReceivings = myReceivings.filter(
-    gifting => gifting.exchange_stat_id === 2
-  )
-  const confirmedReceivingsIds = confirmedReceivings.map(gifting => gifting.id)
-  const confirmedGifts = allGifts.filter(gift =>
-    confirmedReceivingsIds.includes(gift.id)
-  )
-
-  const onholdReceivings = myReceivings.filter(
-    gifting => gifting.exchange_stat_id === 3
-  )
-  const onholdReceivingsIds = onholdReceivings.map(gifting => gifting.id)
-  const onholdGifts = allGifts.filter(gift =>
-    onholdReceivingsIds.includes(gift.id)
-  )
-
-  const unsuccessfulReceivings = myReceivings.filter(
-    gifting => gifting.exchange_stat_id === 5
-  )
-  const unsuccessfulReceivingsIds = unsuccessfulReceivings.map(
-    gifting => gifting.id
-  )
-  const unsuccessfulGifts = allGifts.filter(gift =>
-    unsuccessfulReceivingsIds.includes(gift.id)
-  )
-
-  const activeGifts = pendingGifts
-    .concat(confirmedGifts.concat(onholdGifts))
-    .flat()
-
-  switch (giftsFilter) {
+const findStatId = strFilter => {
+  switch (strFilter) {
     case 'pending':
-      return pendingGifts //find gift objects that are requested,committed or onhold
+      return 1
     case 'committed':
-      return confirmedGifts
+      return 2
     case 'onhold':
-      return onholdGifts
+      return 3
     case 'archived':
-      return unsuccessfulGifts
-    default:
-      return activeGifts
+      return 4
+    case 'all':
+      return 0
   }
 }
+
+const findGiftsToMap = (myReceivings, allGifts, stat_id) => {
+  if (stat_id === 0) {
+    const allRequestedGiftsIds = myReceivings.map(gifting => gifting.gift_id)
+    const allRequestedGifts = allGifts.filter(gift =>
+      allRequestedGiftsIds.includes(gift.id)
+    )
+    return allRequestedGifts
+  } else {
+    const selectedReceivings = myReceivings.filter(
+      gifting => gifting.exchange_stat_id === stat_id
+    )
+    const selectedGiftsIds = selectedReceivings.map(gifting => gifting.gift_id)
+    const selectedGifts = allGifts.filter(gift =>
+      selectedGiftsIds.includes(gift.id)
+    )
+    return selectedGifts
+  }
+}
+
+// const pendingReceivings = myReceivings.filter(
+//   gifting => gifting.exchange_stat_id === 1
+// )
+// const pendingReceivedGiftsIds = pendingReceivings.map(
+//   gifting => gifting.gift_id
+// )
+// const pendingGifts = allGifts.filter(gift =>
+//   pendingReceivedGiftsIds.includes(gift.id)
+// )
+
+// const confirmedReceivings = myReceivings.filter(
+//   gifting => gifting.exchange_stat_id === 2
+// )
+// const confirmedReceivingsIds = confirmedReceivings.map(gifting => gifting.id)
+// const confirmedGifts = allGifts.filter(gift =>
+//   confirmedReceivingsIds.includes(gift.id)
+// )
+
+// const onholdReceivings = myReceivings.filter(
+//   gifting => gifting.exchange_stat_id === 3
+// )
+// const onholdReceivingsIds = onholdReceivings.map(gifting => gifting.id)
+// const onholdGifts = allGifts.filter(gift =>
+//   onholdReceivingsIds.includes(gift.id)
+// )
+
+// const unsuccessfulReceivings = myReceivings.filter(
+//   gifting => gifting.exchange_stat_id === 5
+// )
+// const unsuccessfulReceivingsIds = unsuccessfulReceivings.map(
+//   gifting => gifting.id
+// )
+// const unsuccessfulGifts = allGifts.filter(gift =>
+//   unsuccessfulReceivingsIds.includes(gift.id)
+// )
+
+// const activeGifts = pendingGifts
+//   .concat(confirmedGifts.concat(onholdGifts))
+//   .flat()
+
+// switch (giftsFilter) {
+//   case 'pending':
+//     return pendingGifts //find gift objects that are requested,committed or onhold
+//   case 'committed':
+//     return confirmedGifts
+//   case 'onhold':
+//     return onholdGifts
+//   case 'archived':
+//     return unsuccessfulGifts
+//   default:
+//     return activeGifts
+// }
+// }
 
 const RequestsView = props => {
   if (props.user) {
