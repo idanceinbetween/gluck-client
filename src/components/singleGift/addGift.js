@@ -1,5 +1,5 @@
 import 'date-fns'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import API from '../../API'
@@ -80,7 +80,6 @@ class AddListing extends Component {
   }
 
   render() {
-    const { user } = this.props
     const {
       title,
       description,
@@ -92,7 +91,6 @@ class AddListing extends Component {
       image
     } = this.state
     const { submitForm, handleChange, handleDateChange } = this
-    const { classes } = this.props
     // if (user && user.locations) {
     return (
       <Grid
@@ -292,42 +290,3 @@ class AddListing extends Component {
 }
 
 export default withRouter(withStyles(styles, { WithTheme: true })(AddListing))
-
-{
-  /* <h4>Where can the recipient pickup this item?</h4>
-          <RadioGroup
-            aria-label='Location'
-            name='exchange1_location'
-            value={exchange1_location}
-            onChange={handleChange}
-          >
-            {user.locations.length > 0 && (
-              <Fragment>
-                <FormControlLabel
-                  value={user.locations[0].postcode}
-                  control={<Radio />}
-                  label={`${user.locations[0].address}, ${
-                    user.locations[0].city
-                  }, ${user.locations[0].postcode} (${
-                    user.locations[0].label
-                  })`}
-                />
-                <FormControlLabel
-                  value={user.locations[1].postcode}
-                  control={<Radio />}
-                  label={`${user.locations[1].address}, ${
-                    user.locations[1].city
-                  }, ${user.locations[1].postcode} (${
-                    user.locations[1].label
-                  })`}
-                />
-              </Fragment>
-            )}
-            {user.locations.length === 0 && (
-              <Fragment>
-                You don't have any addresses listed, please add this from
-                <Link to='/myaccount'>My ACcount</Link>
-              </Fragment>
-            )}
-          </RadioGroup> */
-}

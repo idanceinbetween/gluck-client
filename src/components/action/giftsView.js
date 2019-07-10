@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import GiftCard from './giftCard'
-import ActionUserPaper from './actionUserPaper'
 import { Grid, CircularProgress } from '@material-ui/core'
 
 const mapGiftsAccordingly = props => {
@@ -48,7 +47,7 @@ const filterGifts = (myGifts, myGiftings, giftsFilter) => {
   const myArchivedGiftings = myGiftings.filter(
     gifting => gifting.exchange_stat_id === 4
   )
-  const myArchivedGiftingsIds = myArchivedGiftings.map(gifting => gifting.id)
+  // const myArchivedGiftingsIds = myArchivedGiftings.map(gifting => gifting.id)
   const myArchivedGiftsIds = myArchivedGiftings.map(gifting => gifting.gift_id)
   const myArchivedGifts = myGifts.filter(gift =>
     myArchivedGiftsIds.includes(gift.id)
@@ -61,6 +60,7 @@ const filterGifts = (myGifts, myGiftings, giftsFilter) => {
   ) //these are all gifts still active, requested or not.
   const myRequestedGifts = []
   const myLonelyGifts = []
+  // eslint-disable-next-line
   myActiveGifts.map(gift => {
     if (myActiveGiftings.find(g => g.gift_id === gift.id)) {
       myRequestedGifts.push(gift)

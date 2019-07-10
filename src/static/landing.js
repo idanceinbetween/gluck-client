@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { withRouter, NavLink as RouterLink } from 'react-router-dom'
 import { Button, Typography, Grid, Link } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
@@ -39,7 +39,7 @@ const Landing = props => {
         <Grid item xs={5} className={classes.empty} />
 
         <Grid xs={6} id='container2' container className='main-content-area'>
-          <Grid container id='pic' alignItems='flex-end' id='text'>
+          <Grid container id='pic' alignItems='flex-end'>
             <Grid item xs={12} id='text' className={classes.title}>
               <Typography id='landingTitle'>glūck</Typography>
               <Typography id='landingTagline'>gifting made happy</Typography>

@@ -1,5 +1,5 @@
 import 'date-fns'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import API from '../../API'
@@ -82,7 +82,7 @@ class SingleGiftEdit extends Component {
   }
 
   render() {
-    const { user, handleEditMode } = this.props
+    const { handleEditMode } = this.props
     const {
       title,
       description,

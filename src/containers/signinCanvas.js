@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Paper } from '@material-ui/core'
 
-import Signin from '../components/signin'
+import Signin from '../components/auth/signin'
 
 const styles = {
   startContainer: {

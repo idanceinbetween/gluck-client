@@ -62,6 +62,8 @@ const findStatId = strFilter => {
       return 4
     case 'all':
       return 0
+    default:
+      return 0
   }
 }
 

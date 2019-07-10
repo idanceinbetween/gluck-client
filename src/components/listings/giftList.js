@@ -9,10 +9,9 @@ import {
   TableHead,
   TableRow,
   Paper,
-  CircularProgress,
-  Container
+  CircularProgress
 } from '@material-ui/core'
-import DATE from '../Date'
+import DATE from '../../Date'
 
 const findGifter = (users, id) => {
   const foundGifter = users.find(u => u.id === id)

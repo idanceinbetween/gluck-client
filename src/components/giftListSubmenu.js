@@ -1,13 +1,5 @@
 import React, { Fragment } from 'react'
-import {
-  Container,
-  Chip,
-  Grid,
-  Switch,
-  Link,
-  InputBase,
-  Divider
-} from '@material-ui/core'
+import { Chip, Grid, InputBase } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { fade, makeStyles } from '@material-ui/core/styles'
 

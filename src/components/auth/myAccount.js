@@ -3,12 +3,12 @@ import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Grid, Tooltip, Typography, IconButton } from '@material-ui/core'
 
-import CommsCard from './commsCard'
-import LocationCard from './locationCard'
-import UserTemplateCard from './user_templateCard'
+import CommsCard from '../commsCard'
+import LocationCard from '../locationCard'
+import UserTemplateCard from '../user_templateCard'
 import Info from '@material-ui/icons/Info'
 
-import API from '../API'
+import API from '../../API'
 
 // const mapData = props => {
 //   if (Object.keys(props.user).length > 0) {

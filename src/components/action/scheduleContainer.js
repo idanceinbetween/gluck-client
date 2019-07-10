@@ -26,16 +26,15 @@ const renderCommittedExchanges = props => {
     props.user
   )
   let recipientsIds = []
+  // eslint-disable-next-line
   props.user.giftings.map(gifting => {
-    // if (gifting.recipient_id !== props.user.id) {
     recipientsIds.push(gifting.recipient_id)
-    // }
   })
   let giftersIds = []
-  props.user.receivings.map(receiving => {
-    giftersIds.push(receiving.gifter_id)
-  })
+  // eslint-disable-next-line
+  props.user.receivings.map(receiving => giftersIds.push(receiving.gifter_id))
 
+  // eslint-disable-next-line
   return users.map(user => {
     if (recipientsIds.includes(user.id) && !giftersIds.includes(user.id)) {
       //as recipient only
@@ -124,6 +123,7 @@ const findUniqueUsersObjectsFromExchanges = (exchanges, users, me) => {
     firstUsersArray.push(users.find(u => u.id === g.gifter_id))
   )
   const secondUsersArray = []
+  // eslint-disable-next-line
   firstUsersArray.map(user => {
     if (user.id !== me.id) {
       secondUsersArray.push(user)
@@ -147,10 +147,12 @@ const exchangesOfThisUser = (user, str, exchanges, myself) => {
         .concat(exchanges.filter(exchange => exchange.gifter_id === user.id))
     case 'recipient':
       return exchanges.filter(exchange => exchange.recipient_id === user.id)
-      break
     case 'gifter':
       return exchanges.filter(exchange => exchange.gifter_id === user.id)
-      break
+    default:
+      return exchanges
+        .filter(exchange => exchange.recipient_id === user.id)
+        .concat(exchanges.filter(exchange => exchange.gifter_id === user.id))
   }
 }
 
@@ -168,7 +170,9 @@ const applyFilters = props => {
 }
 
 const sortExchangesAccordingly = props => {
+  // eslint-disable-next-line
   const exchangesToMap = applyFilters(props)
+  // eslint-disable-next-line
   exchangesToMap.sort((a, b) => {
     if (DATE.convert(a.date) > DATE.convert(b.date)) return 1
     if (DATE.convert(a.date) < DATE.convert(b.date)) return -1

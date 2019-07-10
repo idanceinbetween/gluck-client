@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { withRouter, NavLink as RouterLink } from 'react-router-dom'
 
-import { Container, Grid, Link, Typography, Button } from '@material-ui/core/'
+import { Grid, Link, Typography, Button } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import Logo from './logo'
 
 const styles = {
   aboutContainer: {
@@ -18,12 +17,6 @@ const styles = {
     backgroundAttachment: 'fixed'
   }
 }
-//dark
-//https://images.unsplash.com/photo-1464348123218-0ee63dfd2746?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2028&q=80
-//light
-//https://images.unsplash.com/photo-1528029320621-f02197f47774?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80
-//vertical
-//https://images.unsplash.com/photo-1513560193152-75fd429c9ed6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -72,7 +65,7 @@ const About = () => {
         </Typography>
         <Grid container direction='row'>
           <Grid item xs />
-          <Grid item xs={6} id='bluebox' alignItems='center' id='buttonCenter'>
+          <Grid item xs={6} alignItems='center' id='buttonCenter'>
             <Link component={RouterLink} to='/action'>
               <Button variant='contained' color='secondary'>
                 Start

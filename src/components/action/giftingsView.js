@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import ActionUserPaper from './actionUserPaper'
-import { Grid, CircularProgress, Typography, Button } from '@material-ui/core'
+import { Grid, CircularProgress, Button } from '@material-ui/core'
 
 const mapUniqueRecipientsNames = props => {
   if (props) {
@@ -19,6 +19,7 @@ const sortByName = (props, str) => {
   let names = mapUniqueRecipientsNames(props)
   let unsortedNames = [...new Set(names)]
   if (names) {
+    // eslint-disable-next-line
     names.sort((a, b) => {
       if (a.toLowerCase() > b.toLowerCase()) return 1
       if (a.toLowerCase() < b.toLowerCase()) return -1
@@ -58,6 +59,8 @@ const redirectSort = props => {
       return sortQuantityFunction(props)
     case 'conscious':
       return sortQuantityFunction(props)
+    default:
+      return sortNameFunction(props)
   }
 }
 
@@ -74,10 +77,13 @@ const sortQuantityFunction = props => {
       return resultIds
     case 'hoarder':
       return resultIds.reverse()
+    default:
+      return resultIds
   }
 }
 
 const sortIdQuantityPairs = idQuantityPairs => {
+  // eslint-disable-next-line
   idQuantityPairs.sort((a, b) => {
     if (a.quantity > b.quantity) return 1
     if (a.quantity < b.quantity) return -1
@@ -88,7 +94,7 @@ const sortIdQuantityPairs = idQuantityPairs => {
 
 const findIdAndQuantityPairs = (props, id) => {
   let giftPairsRequested = findGiftPairsRequested(props.user, id) //this returns an array [{gift, gifting_id} {gift, gift.id)}]
-  let recipient = props.users.find(user => user.id === id)
+  // let recipient = props.users.find(user => user.id === id)
   let idQuantityPairs = []
   let singleRecipientQtyPair = {
     recipient_id: id,
@@ -100,6 +106,7 @@ const findIdAndQuantityPairs = (props, id) => {
 
 const checkOutstandingExchanges = recipientObj => {
   let allReceivingsStatus = []
+  // eslint-disable-next-line
   recipientObj.receivings.map(r => {
     if (r.exchange_stat_id !== 4 && r.exchange_stat_id !== 5) {
       allReceivingsStatus.push(r)
@@ -116,6 +123,7 @@ const checkOutstandingExchanges = recipientObj => {
 const renderResults = props => {
   if (Object.keys(props.user).length > 0) {
     let sortedRecipientsIds = redirectSort(props)
+    // eslint-disable-next-line
     return sortedRecipientsIds.map(id => {
       let giftPairsRequested = findGiftPairsRequested(props.user, id) //this returns an array [{gift, gifting_id} {gift, gift.id)}]
       let recipient = props.users.find(user => user.id === id)

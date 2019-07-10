@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-import MyAccount from '../components/myAccount'
+import MyAccount from '../components/auth/myAccount'
 
 const styles = {
   myAccountContainer: {

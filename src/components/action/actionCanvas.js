@@ -42,12 +42,13 @@ class ActionCanvas extends Component {
       recipientsIds.map(id =>
         this.props.users
           .find(user => user.id === id)
+          // eslint-disable-next-line
           .receivings.map(r => {
+            // eslint-disable-next-line
             switch (r.exchange_stat_id.toString()) {
               case '1':
                 requestedGiftingsIds.push(r.id)
                 return null
-                break
               case '2':
                 committedGiftingsIds.push(r.id)
                 return null
@@ -91,6 +92,7 @@ class ActionCanvas extends Component {
     ) //collect ALL of the results, an array per user
 
     if (giftingsToMakeAvailable.flat().length > 0) {
+      // eslint-disable-next-line
       return giftingsToMakeAvailable.flat().map(gifting => {
         if (gifting.exchange_stat_id === 3) {
           this.changeGiftingState(gifting, 1)
@@ -131,6 +133,7 @@ class ActionCanvas extends Component {
     } // find other giftings with same gift in order to put on hold
 
     if (giftingsToPutOnHold.flat().length > 0) {
+      // eslint-disable-next-line
       return giftingsToPutOnHold.flat().map(gifting => {
         if (gifting.exchange_stat_id === 1) {
           this.changeGiftingState(gifting, 3)
@@ -214,6 +217,7 @@ class ActionCanvas extends Component {
     )
     const selectedGiftingsIds = selectedGiftings.map(gifting => gifting.id)
 
+    // eslint-disable-next-line
     selectedGiftings.map(gifting => {
       this.changeGiftingState(gifting, 4)
       const otherGiftingsToArchive = this.findOtherGiftingsObjsWithSameGift(
@@ -234,6 +238,7 @@ class ActionCanvas extends Component {
 
     const selectedGiftingsIds = selectedGiftings.map(gifting => gifting.id)
 
+    // eslint-disable-next-line
     selectedGiftings.map(gifting => {
       this.changeGiftingState(gifting, 5)
       const otherGiftingsToRelease = this.findOtherGiftingsObjsWithSameGift(

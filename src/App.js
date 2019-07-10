@@ -7,8 +7,8 @@ import { CssBaseline } from '@material-ui/core'
 import { withStyles, createMuiTheme } from '@material-ui/core/styles'
 
 import TopNav from './components/nav/topNav'
-import About from './components/about'
-import Landing from './components/landing'
+import About from './static/about'
+import Landing from './static/landing'
 import MainCanvas from './containers/mainCanvas'
 
 const theme = createMuiTheme()

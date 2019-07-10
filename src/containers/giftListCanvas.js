@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import { Grid, Container } from '@material-ui/core'
 
-import GiftList from '../components/giftList'
+import GiftList from '../components/listings/giftList'
 import GiftListSubmenu from '../components/giftListSubmenu'
 
 class GiftListCanvas extends Component {

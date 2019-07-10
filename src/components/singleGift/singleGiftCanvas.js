@@ -1,21 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import {
-  Grid,
-  Paper,
-  Typography,
-  ButtonBase,
-  Button,
-  CircularProgress
-} from '@material-ui/core'
+import { Grid, Paper, Button, CircularProgress } from '@material-ui/core'
 import { withRouter } from 'react-router-dom'
 
 import { withStyles, createMuiTheme } from '@material-ui/core/styles'
 import API from '../../API'
-import DATE from '../../Date'
 
 import SingleGift from './singleGift'
 import SingleGiftEdit from './singleGiftEdit'
-import SingleGiftSubmenu from './singleGiftSubmenu'
 
 const theme = createMuiTheme()
 

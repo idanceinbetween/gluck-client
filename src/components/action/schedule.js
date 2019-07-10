@@ -48,6 +48,8 @@ const renderExchangeStatus = exchange_stat_id => {
         return 'Completed'
       case 5:
         return 'Cancelled'
+      default:
+        return 'Committed'
     }
   }
 }
@@ -157,6 +159,7 @@ const renderSchedule = (props, classes) => {
             className={classes.button}
             noWrap
             onClick={() => {
+              // eslint-disable-next-line
               {
                 window.confirm(
                   `Are you sure you want to cancel all the exchange with ${

@@ -10,7 +10,7 @@ import AddGiftCanvas from '../components/singleGift/addGiftCanvas'
 import SingleGiftCanvas from '../components/singleGift/singleGiftCanvas'
 import TestPage from '../test'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 220
 const useStyles = makeStyles(theme => ({
@@ -46,14 +46,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MainCanvas = props => {
-  const { container } = props
   const classes = useStyles()
-  const theme = useTheme()
-  const [mobileOpen, setMobileOpen] = React.useState(false)
+  // const [mobileOpen, setMobileOpen] = React.useState(false)
 
-  function handleDrawerToggle() {
-    setMobileOpen(!mobileOpen)
-  }
   return (
     <div className={classes.root}>
       {/* <LeftDrawer

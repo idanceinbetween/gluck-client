@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { TextField, Grid, Button, CircularProgress } from '@material-ui/core/'
+import { TextField, Button, CircularProgress } from '@material-ui/core/'
 import { withStyles, createMuiTheme } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
 
@@ -191,7 +191,6 @@ class Signin extends Component {
   }
 
   render() {
-    const { classes } = this.props
     if (this.props.formToShow !== null) {
       return (
         <Fragment>

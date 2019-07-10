@@ -1,14 +1,7 @@
 import React from 'react'
-import { withRouter, Link as RouterLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import '../../App.css'
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Link,
-  Button
-} from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import AccountMenu from './accountMenu'
